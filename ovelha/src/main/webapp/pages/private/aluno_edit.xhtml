@@ -1,0 +1,122 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/private/template/main.xhtml">
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['botao.salvar']}"
+						action="#{alunoEditMB.insert}"
+						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['botao.salvar']}"
+						action="#{alunoEditMB.update}"
+						rendered="#{alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['botao.excluir']}"
+						rendered="#{alunoEditMB.updateMode}"
+						onclick="PF('confirmation').show()" type="button" immediate="true"
+						ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						header="#{messages['label.dialog.delete']}" showEffect="bounce"
+						hideEffect="explode" severity="alert" widgetVar="confirmation">
+						<p:commandButton value="#{messages['botao.dialogo.sim']}"
+							action="#{alunoEditMB.delete}" immediate="true" ajax="false" />
+						<p:commandButton value="#{messages['botao.dialogo.nao']}"
+							onclick="PF('confirmation').hide();" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="Aluno" toggleable="true" toggleSpeed="500">
+			
+			<h:panelGrid id="fieldsFotoAluno" columns="2">
+				<h:outputLabel value="Foto : " for="foto" styleClass="text-input" />
+				<p:fileUpload value="#{alunoEditMB.bean.foto}" mode="simple" skinSimple="true" id="foto" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Fotografia invalida. Favor selecionar um arquivo do tipo imagem"/>
+			</h:panelGrid>
+			
+			<br />
+
+			<h:panelGrid id="fieldsAluno" columns="8">
+
+					<h:outputLabel value="Nome: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{alunoEditMB.bean.nome}" size="60"
+						title="Nome do aluno(a)" required="true" />
+					<p:message for="nome" />
+
+
+					<h:outputLabel value="Telefones: " for="telefoneAluno"
+						styleClass="text-input" />
+					<h:inputText id="telefoneAluno" size="30"
+						value="#{alunoEditMB.bean.telefonesAluno}" title="Telefones" />
+					<p:message for="telefoneAluno" />
+
+
+
+
+					<h:outputLabel value="Reencontro : " for="rdoReencontro" styleClass="text-input" />
+						<p:selectOneRadio id="rdoReencontro" value="#{alunoEditMB.bean.reencontro}">
+							<f:selectItem itemLabel="SIM" itemValue="1" />
+							<f:selectItem itemLabel="NAO" itemValue="2" />
+						</p:selectOneRadio>
+
+
+							<h:outputLabel value="Nivel: " for="selecNivel"
+								styleClass="text-input" />
+							<p:selectOneListbox id="selectNivel"
+								value="#{alunoEditMB.bean.nivel}">
+								<f:selectItem itemLabel="1" itemValue="1" />
+								<f:selectItem itemLabel="2" itemValue="2" />
+								<f:selectItem itemLabel="3" itemValue="3" />
+							</p:selectOneListbox>
+							
+				</h:panelGrid>
+
+				<br />
+				<h:panelGrid id="fieldsLiderImediato" columns="5">
+
+					<h:outputLabel value="Lider Imediato: " for="liderImediato"
+						styleClass="text-input" />
+					<h:inputText id="liderImediato"
+						value="#{alunoEditMB.bean.nomeLiderImediato}" size="60"
+						title="Nome do lider imediato" required="true" />
+					<p:message for="liderImediato" />
+
+					<h:outputLabel value="Telefones: " for="telefoneLiderImediato"
+						styleClass="text-input" />
+					<h:inputText id="telefoneLiderImediato" size="30"
+						value="#{alunoEditMB.bean.telefonesLiderImediato}"
+						title="Telefones" />
+					<p:message for="telefoneLiderImediato" />
+
+
+				</h:panelGrid>
+
+				<br />
+				<h:panelGrid id="fieldsLiderMacro" columns="6">
+
+					<h:outputLabel value="Lider Macro : " for="liderMacro"
+						styleClass="text-input" />
+					<h:inputText id="liderMacro"
+						value="#{alunoEditMB.bean.nomeLiderMacro}" size="60"
+						title="Nome do lider macro (12)" required="true" />
+					<p:message for="liderMacro" />
+
+					<h:outputLabel value="Telefones: " for="telefoneLiderMacro"
+						styleClass="text-input" />
+					<h:inputText id="telefoneLiderMacro" size="30"
+						value="#{alunoEditMB.bean.telefonesLiderMacro}" title="Telefones" />
+					<p:message for="telefoneLiderMacro" />
+
+
+				</h:panelGrid>
+
+				<br />
+
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

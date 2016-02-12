@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/private/template/main.xhtml">
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['botao.salvar']}"
+						action="#{usuarioEditMB.insert}"
+						rendered="#{!usuarioEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['botao.salvar']}"
+						action="#{usuarioEditMB.update}"
+						rendered="#{usuarioEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['botao.excluir']}"
+						rendered="#{usuarioEditMB.updateMode}"
+						onclick="PF('confirmation').show()" type="button" immediate="true"
+						ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						header="#{messages['label.dialog.delete']}" showEffect="bounce"
+						hideEffect="explode" severity="alert" widgetVar="confirmation">
+						<p:commandButton value="#{messages['botao.dialogo.sim']}"
+							action="#{usuarioEditMB.delete}" immediate="true" ajax="false" />
+						<p:commandButton value="#{messages['botao.dialogo.nao']}"
+							onclick="PF('confirmation').hide();" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="Usuário" toggleable="true" toggleSpeed="500">
+
+				<h:panelGrid id="fieldsUsuario" columns="6">
+
+					<h:outputLabel value="E-Mail: " for="login" styleClass="text-input" />
+					<h:inputText id="login" value="#{usuarioEditMB.bean.login}"
+						title="E-Mail Válido" maxlength="100"
+						validatorMessage="E-mail inválido">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
+					<p:message for="login" />
+
+					
+					<h:outputLabel value="Senha: " for="senha" styleClass="text-input" />
+					<h:inputSecret id="senha" value="#{usuarioEditMB.bean.senha}"
+						title="Senha do usuario" required="true" maxlength="8"/>
+					<p:message for="senha" />
+					
+					<h:outputLabel value="Perfil: " for="perfil" styleClass="text-input" />
+					<h:selectOneRadio id="perfil" value="#{usuarioEditMB.bean.perfilId}">
+						<f:selectItem itemValue="1" itemLabel="Administrador" />
+						<f:selectItem itemValue="2" itemLabel="Público" />						
+					</h:selectOneRadio>
+					<p:message for="perfil" />					
+
+				</h:panelGrid>
+				
+				<br />
+
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

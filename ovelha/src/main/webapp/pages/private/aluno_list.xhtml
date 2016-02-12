@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/private/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+		
+					<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['botao.novo']}"
+						icon="ui-icon-document" action="#{alunoListMB.getNextView}"
+						actionListener="#{alunoListMB.clear}"  ajax="false" />
+
+					<p:commandButton title="#{messages['botao.excluir']}"
+						icon="ui-icon-trash" onclick="PF('confirmation').show();"
+						type="button" immediate="true" ajax="false" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert"
+						widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['botao.dialogo.sim']}"
+							action="#{alunoListMB.deleteSelection}"
+							actionListener="#{alunoListMB.clear}" />
+						<h:commandButton value="#{messages['botao.dialogo.nao']}"
+							onclick="PF('confirmation').hide();" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="list" var="bean" value="#{alunoListMB.resultList}" paginator="true" rows="10" paginatorPosition="bottom" >
+				<f:facet name="header">Lista de Alunos </f:facet>
+				
+				<p:column style="width:1%;">
+					<h:selectBooleanCheckbox value="#{alunoListMB.selection[bean.id]}" />
+				</p:column>
+				
+				<p:column style="width:8%;" sortBy="#{bean.nome}">
+					<f:facet name="header">Nome</f:facet>
+					<h:commandLink action="#{alunoListMB.getNextView}"
+						actionListener="#{alunoListMB.clear}">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>				
+
+				<p:column style="width:11%;" sortBy="#{bean.endereco}">
+					<f:facet name="header">Nivel</f:facet>
+					<h:outputText value="#{bean.nivel}" />
+				</p:column>
+
+				<p:column style="width:7%;" sortBy="#{bean.nomeLiderImediato}">
+					<f:facet name="header">Lider Imediato</f:facet>
+					<h:outputText value="#{bean.nomeLiderImediato}" />
+				</p:column>
+				
+				<p:column style="width:7%;" sortBy="#{bean.nomeLiderMacro}">
+					<f:facet name="header">Lider Macro</f:facet>
+					<h:outputText value="#{bean.nomeLiderMacro}" />
+				</p:column>
+
+				<p:column style="width:5%;" sortBy="#{bean.dataRegistro}">
+					<f:facet name="header">Data de Registro</f:facet>
+					<h:outputText value="#{bean.dataRegistro}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>					
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
