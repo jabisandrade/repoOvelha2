@@ -1,11 +1,17 @@
 package br.org.ovelha.util;
 
+
+
+public class Agendador {
+	
+}
+
+/*
+
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
 import br.org.ovelha.business.EmailBC;
-
 
 @Stateless
 public class Agendador {
@@ -25,3 +31,4 @@ public class Agendador {
 
 
 }
+*/
