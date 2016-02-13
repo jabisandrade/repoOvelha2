@@ -38,44 +38,6 @@
 					</h:panelGroup>
 				</p:fieldset>
 			</h:form>
-
-			<h:form prependId="false" id="form2">
-				<br />
-				<br />
-				<p:fieldset legend="Criar usuário" toggleable="true"
-					collapsed="true" toggleSpeed="500">
-					<h:panelGroup>
-						<h:panelGrid id="fieldsCriarUsuarioMsg" columns="2">
-							<h:outputLabel value="Crie seu seu usuário: " />
-							<p:message for="login2" />
-						</h:panelGrid>
-
-						<h:panelGrid id="fieldsCriarUsuario" columns="7">
-							<br />
-							<br />
-							<h:outputLabel value="E-Mail: " for="login2"
-								styleClass="text-input" />
-							<h:inputText id="login2"
-								value="#{usuarioPublicoEditMB.bean.login}" title="E-Mail Válido"
-								maxlength="100" validatorMessage="E-mail inválido">
-								<f:validateRegex
-									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-							</h:inputText>
-
-
-							<h:outputLabel value="Senha: " for="login2"
-								styleClass="text-input" />
-							<h:inputSecret id="senha2"
-								value="#{usuarioPublicoEditMB.bean.senha}"
-								title="Senha com 8 caracteres" required="true" maxlength="8" />
-							<br />
-							<h:commandButton value="Criar"
-								action="#{usuarioPublicoEditMB.insert}" />
-						</h:panelGrid>
-					</h:panelGroup>
-				</p:fieldset>
-			</h:form>
-
 			
 			<h:form prependId="false" id="form3">
 				<p:fieldset legend="Recuperar Senha" toggleable="true"

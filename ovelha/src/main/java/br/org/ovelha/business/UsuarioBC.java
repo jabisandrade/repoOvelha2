@@ -5,6 +5,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
+import br.org.ovelha.domain.Perfil;
 import br.org.ovelha.domain.Usuario;
 import br.org.ovelha.persistence.UsuarioDAO;
 import br.org.ovelha.util.CDIFactory;
@@ -115,7 +116,7 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 
 	public String inserir(Usuario usuario) {
 		try {
-								
+			usuario.setPerfil(Perfil.ADM);					
 			Usuario usuarioPesquisado = CDIFactory.getUsuarioDAO().obterSenhaUsuario(usuario.getLogin());
 			
 			if (usuarioPesquisado == null){

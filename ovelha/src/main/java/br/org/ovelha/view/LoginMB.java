@@ -11,7 +11,6 @@ import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.org.ovelha.acesso.Credenciais;
-import br.org.ovelha.business.CasalBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Perfil;
 
@@ -30,9 +29,6 @@ public class LoginMB extends AbstractPageBean {
 	@Inject
 	private Credenciais credenciais;
 	
-	@Inject
-	private CasalBC casalBC;
-	
 	private boolean exibeAtualizar = false;
 	
 	private Long idCasalUsuarioLogado;
@@ -42,13 +38,9 @@ public class LoginMB extends AbstractPageBean {
 	@PostConstruct
 	public void init(){
 		if(credenciais.isLoggedIn()){
-			idCasalUsuarioLogado = casalBC.obterCasalPorUsuario();
-			if(idCasalUsuarioLogado > 0 ){
-				exibeAtualizar = true;
-			}else{
 				exibeAtualizar = false;
 			}			
-		}
+		
 	}
 	
 	public void login(){

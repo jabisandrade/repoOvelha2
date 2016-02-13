@@ -4,10 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
-import br.org.ovelha.domain.Casal;
 import br.org.ovelha.domain.Perfil;
 import br.org.ovelha.domain.Usuario;
-import br.org.ovelha.util.Data;
 
 @PersistenceController
 public class UsuarioDAO extends AbstractDAO<Usuario, Long> {

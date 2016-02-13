@@ -6,7 +6,6 @@ import java.util.Random;
 import javax.faces.context.FacesContext;
 
 import br.org.ovelha.constant.MESES;
-import br.org.ovelha.domain.Casal;
 
 public final class StringU {
 	
@@ -26,11 +25,6 @@ public final class StringU {
         return primeiroNome; 
 	}
 	
-	public static String getNomeCasal(Casal c){
-		String marido = StringU.getPrimeiroNome(c.getMarido().getNome());
-		String esposa = StringU.getPrimeiroNome(c.getEsposa().getNome());
-		return marido+" & "+esposa;
-	}
 	
 	public static String getMes(int value){
 		switch (value) {

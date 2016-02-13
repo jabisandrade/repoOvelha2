@@ -1,12 +1,7 @@
 package br.org.ovelha.persistence;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.org.ovelha.domain.Aluno;
-import br.org.ovelha.domain.Homem;
-import br.org.ovelha.util.Data;
 
 @PersistenceController
 public class AlunoDAO extends AbstractDAO<Aluno, Long> {
