@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,14 +25,18 @@ public class Aula implements EntidadeIf  {
 	@Column(name = "idAula")
 	private Long idAula;
 	
-	@Column
-	private Long idAluno;
+	 @ManyToOne
+	 @JoinColumn(name="idAluno", referencedColumnName="idAluno")
+	 private Aluno aluno;
 		
 	@Column(columnDefinition="boolean default false")
 	private boolean presenca;
 	
 	@Column
 	private int modulo;//1,2,3,4,5,6
+	
+	@Column
+	private int mes;
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -84,13 +90,22 @@ public class Aula implements EntidadeIf  {
 		this.dataAtualizacaoRegistro = dataAtualizacaoRegistro;
 	}
 
-	public Long getIdAluno() {
-		return idAluno;
+	public Aluno getAluno() {
+		return aluno;
 	}
 
-	public void setIdAluno(Long idAluno) {
-		this.idAluno = idAluno;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
+
+	public int getMes() {
+		return mes;
+	}
+
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
 
 	
 }

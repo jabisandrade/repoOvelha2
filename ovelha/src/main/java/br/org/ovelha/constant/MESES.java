@@ -20,6 +20,15 @@ public enum MESES {
     public String getDescricao() {
         return descricao;
     }
+    
+	public static MESES obterMes(int valor) {
+		for (MESES mes : values()) {
+			if (mes.getValor()==valor) {
+				return mes;
+			}
+		}
+		return null;
+	}
 
 }
 

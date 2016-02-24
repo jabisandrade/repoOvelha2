@@ -45,5 +45,11 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 		}
 		return getPreviousView();
 	}
+	
+	public String alunoPresenca() {
+		return PAGES.ALUNO_PRESENCA;
+	}
+	
+	
 
 }

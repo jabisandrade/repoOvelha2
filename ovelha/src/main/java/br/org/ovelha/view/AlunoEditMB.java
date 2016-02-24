@@ -1,8 +1,8 @@
 package br.org.ovelha.view;
 
+import java.util.Collection;
 import java.util.Date;
 
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -13,6 +13,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.ovelha.business.AlunoBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Aluno;
+import br.org.ovelha.domain.Aula;
 
 @ViewController
 @PreviousView(PAGES.ALUNO_LIST)
@@ -51,8 +52,16 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 
 	@Override
 	protected Aluno handleLoad(Long id) {
-		return this.alunoBC.load(id);
+		Aluno aluno = this.alunoBC.load(id);
+		
+		if (aluno.getAulas()==null||aluno.getAulas().isEmpty()){
+			Collection<Aula> aulas = this.alunoBC.inicializarAulas(aluno);
+			aluno.setAulas(aulas);
+		}
+		return aluno;
 	}
+	
+	
 	
 
 

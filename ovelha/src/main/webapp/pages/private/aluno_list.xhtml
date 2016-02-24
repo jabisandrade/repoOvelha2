@@ -3,6 +3,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br"
 	template="/pages/private/template/main.xhtml">
 
 	<ui:define name="body">
@@ -41,8 +42,7 @@
 				
 				<p:column style="width:8%;" sortBy="#{bean.nome}">
 					<f:facet name="header">Nome</f:facet>
-					<h:commandLink action="#{alunoListMB.getNextView}"
-						actionListener="#{alunoListMB.clear}">
+					<h:commandLink action="#{alunoListMB.getNextView}" actionListener="#{alunoListMB.clear}">
 						<h:outputText value="#{bean.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
@@ -69,6 +69,14 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>					
 				</p:column>
+				
+				<p:column style="width:5%;" >
+					<f:facet name="header">Presença</f:facet>
+					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}">
+						<h:outputText value="Verificar" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>	
 				
 			</p:dataTable>
 		</h:form>
