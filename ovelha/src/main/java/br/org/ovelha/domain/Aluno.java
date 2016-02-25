@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import br.org.ovelha.constant.MODULOS;
 
 
 @SequenceGenerator(name = "seqAluno", sequenceName = "idAluno_seq", allocationSize = 1)
@@ -76,6 +76,24 @@ public class Aluno implements EntidadeIf  {
 	
 	@Transient
 	private Integer reencontro;
+	
+	@Transient
+	private Collection<Aula> aulasModulo1 = new ArrayList<Aula>();
+	
+	@Transient
+	private Collection<Aula> aulasModulo2 = new ArrayList<Aula>();
+	
+	@Transient
+	private Collection<Aula> aulasModulo3 = new ArrayList<Aula>();
+	
+	@Transient
+	private Collection<Aula> aulasModulo4 = new ArrayList<Aula>();
+		
+	@Transient
+	private Collection<Aula> aulasModulo5 = new ArrayList<Aula>();
+	
+	@Transient
+	private Collection<Aula> aulasModulo6 = new ArrayList<Aula>();
 	
 	public Aluno() {
 		super();
@@ -208,6 +226,137 @@ public class Aluno implements EntidadeIf  {
 			reEncontro=false;
 		}
 		this.reencontro = reencontro;
+	}
+
+	public Collection<Aula> getAulasModulo1() {
+		this.aulasModulo1 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO1.getValor()){
+				aulasModulo1.add(aula);
+			}
+		}
+		return aulasModulo1;
+	}
+
+	public void setAulasModulo1(Collection<Aula> aulasModulo1) {
+		this.aulasModulo1 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO1.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo1);
+		this.aulasModulo1 = aulasModulo1;
+	}
+
+	public Collection<Aula> getAulasModulo2() {
+		this.aulasModulo2 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO2.getValor()){
+				aulasModulo2.add(aula);
+			}
+		}
+		return aulasModulo2;
+	}
+
+	public void setAulasModulo2(Collection<Aula> aulasModulo2) {
+		this.aulasModulo2 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO2.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo2);
+		this.aulasModulo1 = aulasModulo2;
+
+	}
+
+	public Collection<Aula> getAulasModulo3() {
+		this.aulasModulo3 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO3.getValor()){
+				aulasModulo3.add(aula);
+			}
+		}
+		return aulasModulo3;
+	}
+
+	public void setAulasModulo3(Collection<Aula> aulasModulo3) {
+		this.aulasModulo3 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO3.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo3);
+		this.aulasModulo1 = aulasModulo3;
+
+	}
+
+	public Collection<Aula> getAulasModulo4() {
+		this.aulasModulo4 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO4.getValor()){
+				aulasModulo4.add(aula);
+			}
+		}
+		return aulasModulo4;
+	}
+
+	public void setAulasModulo4(Collection<Aula> aulasModulo4) {
+		this.aulasModulo4 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO4.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo4);
+		this.aulasModulo1 = aulasModulo4;
+
+	}
+
+	public Collection<Aula> getAulasModulo5() {
+		this.aulasModulo5 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO5.getValor()){
+				aulasModulo5.add(aula);
+			}
+		}
+		return aulasModulo5;
+	}
+
+	public void setAulasModulo5(Collection<Aula> aulasModulo5) {
+		this.aulasModulo5 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO5.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo5);
+		this.aulasModulo1 = aulasModulo5;
+
+	}
+
+	public Collection<Aula> getAulasModulo6() {
+		this.aulasModulo6 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO6.getValor()){
+				aulasModulo6.add(aula);
+			}
+		}
+		return aulasModulo6;
+	}
+
+	public void setAulasModulo6(Collection<Aula> aulasModulo6) {
+		this.aulasModulo6 = new ArrayList<Aula>();
+		for(Aula aula:this.getAulas()){
+			if (aula.getModulo() == MODULOS.MODULO6.getValor()){
+				this.getAulas().remove(aula);
+			}
+		}
+		this.aulas.addAll(aulasModulo6);
+		this.aulasModulo1 = aulasModulo6;
+
 	}
 
 	

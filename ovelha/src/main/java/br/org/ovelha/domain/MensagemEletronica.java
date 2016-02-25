@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @SequenceGenerator(name = "seqEmail", sequenceName = "id_seq", allocationSize = 1)
 @Entity

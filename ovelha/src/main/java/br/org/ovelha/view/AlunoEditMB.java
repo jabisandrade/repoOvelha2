@@ -11,6 +11,7 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.ovelha.business.AlunoBC;
+import br.org.ovelha.business.AulaBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Aula;
@@ -24,6 +25,9 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 
 	@Inject
 	private AlunoBC alunoBC;
+	
+	@Inject
+	private AulaBC aulaBC;
 	
 	@Override
 	@Transactional
@@ -45,6 +49,7 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Transactional
 	public String update() {
 		Aluno a = getBean();
+		this.aulaBC.update(a.getAulas());
 		a.setDataAtualizacaoRegistro(new Date());
 		this.alunoBC.update(getBean());
 		return getPreviousView();

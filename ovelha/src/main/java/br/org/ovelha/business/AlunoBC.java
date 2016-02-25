@@ -31,7 +31,10 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 				aula.setDataRegistro(dataRegistro);
 				aula.setMes(mes.getValor());
 				aula.setModulo(modulo.getValor());
-				aula.setPresenca(false);
+				aula.setA1(false);
+				aula.setA2(false);
+				aula.setA3(false);
+				aula.setA4(false);
 				aulas.add(aula);
 			}			
 		}
