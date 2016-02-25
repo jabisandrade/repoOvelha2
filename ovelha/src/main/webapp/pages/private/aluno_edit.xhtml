@@ -50,10 +50,9 @@
 					<p:message for="nome" />
 
 
-					<h:outputLabel value="Telefones: " for="telefoneAluno"
+					<h:outputLabel value="Telefone: " for="telefoneAluno"
 						styleClass="text-input" />
-					<h:inputText id="telefoneAluno" size="30"
-						value="#{alunoEditMB.bean.telefonesAluno}" title="Telefones" />
+					<p:inputMask id="telefoneAluno" value="#{alunoEditMB.bean.telefonesAluno}" mask="(99) 99999-9999"/>	
 					<p:message for="telefoneAluno" />
 
 
@@ -87,11 +86,9 @@
 						title="Nome do lider imediato" required="true" />
 					<p:message for="liderImediato" />
 
-					<h:outputLabel value="Telefones: " for="telefoneLiderImediato"
+					<h:outputLabel value="Telefone: " for="telefoneLiderImediato"
 						styleClass="text-input" />
-					<h:inputText id="telefoneLiderImediato" size="30"
-						value="#{alunoEditMB.bean.telefonesLiderImediato}"
-						title="Telefones" />
+					<p:inputMask id="telefoneLiderImediato" value="#{alunoEditMB.bean.telefonesLiderImediato}" mask="(99) 99999-9999"/>		
 					<p:message for="telefoneLiderImediato" />
 
 
@@ -107,10 +104,9 @@
 						title="Nome do lider macro (12)" required="true" />
 					<p:message for="liderMacro" />
 
-					<h:outputLabel value="Telefones: " for="telefoneLiderMacro"
+					<h:outputLabel value="Telefone: " for="telefoneLiderMacro"
 						styleClass="text-input" />
-					<h:inputText id="telefoneLiderMacro" size="30"
-						value="#{alunoEditMB.bean.telefonesLiderMacro}" title="Telefones" />
+					<p:inputMask id="telefoneLiderMacro" value="#{alunoEditMB.bean.telefonesLiderMacro}" mask="(99) 99999-9999"/>						
 					<p:message for="telefoneLiderMacro" />
 
 

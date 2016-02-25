@@ -48,7 +48,7 @@
 					</h:commandLink>
 				</p:column>				
 
-				<p:column style="width:11%;" sortBy="#{bean.endereco}">
+				<p:column style="width:11%;" sortBy="#{bean.nivel}">
 					<f:facet name="header">Nivel</f:facet>
 					<h:outputText value="#{bean.nivel}" />
 				</p:column>
@@ -71,7 +71,7 @@
 				</p:column>
 				
 				<p:column style="width:5%;" >
-					<f:facet name="header">Presença</f:facet>
+					<f:facet name="header">Presenças</f:facet>
 					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}">
 						<h:outputText value="Verificar" />
 						<f:param name="id" value="#{bean.id}" />

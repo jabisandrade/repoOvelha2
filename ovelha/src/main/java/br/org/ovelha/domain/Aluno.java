@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,13 +67,9 @@ public class Aluno implements EntidadeIf  {
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtualizacaoRegistro;
-	
-	/*
-	@OneToMany(mappedBy = "idAluno", targetEntity = Aula.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Collection<Aula> aulas = new ArrayList<Aula>();*/	
-	
-	 @OneToMany(mappedBy="aluno")
-	 private Collection<Aula> aulas = new ArrayList<Aula>();
+		
+	@OneToMany(mappedBy="aluno", cascade = CascadeType.ALL)
+	private Collection<Aula> aulas = new ArrayList<Aula>();
 	
 	@Transient
 	private Integer reencontro;
