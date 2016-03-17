@@ -61,6 +61,9 @@ public class Aluno implements EntidadeIf  {
 	private boolean reEncontro;
 	
 	@Column
+	private String professores;
+	
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataRegistro;
 	
@@ -354,6 +357,14 @@ public class Aluno implements EntidadeIf  {
 		this.aulas.addAll(aulasModulo6);
 		this.aulasModulo1 = aulasModulo6;
 
+	}
+
+	public String getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(String professores) {
+		this.professores = professores;
 	}
 
 	

@@ -1,11 +1,8 @@
 package br.org.ovelha.util;
 
-import java.util.Collection;
-
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.mail.Mail;
-import br.org.ovelha.domain.MensagemEletronica;
 
 
 public class GerenciadorEmail {

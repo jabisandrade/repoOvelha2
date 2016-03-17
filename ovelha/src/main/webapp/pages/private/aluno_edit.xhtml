@@ -32,8 +32,8 @@
 			<br />
 
 			<p:fieldset legend="Aluno" toggleable="true" toggleSpeed="500">
-			
-			<!-- 
+
+				<!-- 
 			<h:panelGrid id="fieldsFotoAluno" columns="2">
 				<h:outputLabel value="Foto : " for="foto" styleClass="text-input" />
 				<p:fileUpload value="#{alunoEditMB.bean.foto}" mode="simple" skinSimple="true" id="foto" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Fotografia invalida. Favor selecionar um arquivo do tipo imagem"/>
@@ -42,7 +42,7 @@
 			<br />
 			 -->
 
-			<h:panelGrid id="fieldsAluno" columns="8">
+				<h:panelGrid id="fieldsAluno" columns="8">
 
 					<h:outputLabel value="Nome: " for="nome" styleClass="text-input" />
 					<h:inputText id="nome" value="#{alunoEditMB.bean.nome}" size="60"
@@ -52,28 +52,27 @@
 
 					<h:outputLabel value="Telefone: " for="telefoneAluno"
 						styleClass="text-input" />
-					<p:inputMask id="telefoneAluno" value="#{alunoEditMB.bean.telefonesAluno}" mask="(99) 99999-9999"/>	
+					<p:inputMask id="telefoneAluno"
+						value="#{alunoEditMB.bean.telefonesAluno}" mask="(99) 99999-9999" />
 					<p:message for="telefoneAluno" />
 
+					<h:outputLabel value="Reencontro : " for="rdoReencontro"
+						styleClass="text-input" />
+					<p:selectOneRadio id="rdoReencontro"
+						value="#{alunoEditMB.bean.reencontro}">
+						<f:selectItem itemLabel="SIM" itemValue="1" />
+						<f:selectItem itemLabel="NAO" itemValue="2" />
+					</p:selectOneRadio>
 
+					<h:outputLabel value="Nivel: " for="selecNivel"
+						styleClass="text-input" />
+					<p:selectOneListbox id="selectNivel"
+						value="#{alunoEditMB.bean.nivel}">
+						<f:selectItem itemLabel="1" itemValue="1" />
+						<f:selectItem itemLabel="2" itemValue="2" />
+						<f:selectItem itemLabel="3" itemValue="3" />
+					</p:selectOneListbox>
 
-
-					<h:outputLabel value="Reencontro : " for="rdoReencontro" styleClass="text-input" />
-						<p:selectOneRadio id="rdoReencontro" value="#{alunoEditMB.bean.reencontro}">
-							<f:selectItem itemLabel="SIM" itemValue="1" />
-							<f:selectItem itemLabel="NAO" itemValue="2" />
-						</p:selectOneRadio>
-
-
-							<h:outputLabel value="Nivel: " for="selecNivel"
-								styleClass="text-input" />
-							<p:selectOneListbox id="selectNivel"
-								value="#{alunoEditMB.bean.nivel}">
-								<f:selectItem itemLabel="1" itemValue="1" />
-								<f:selectItem itemLabel="2" itemValue="2" />
-								<f:selectItem itemLabel="3" itemValue="3" />
-							</p:selectOneListbox>
-							
 				</h:panelGrid>
 
 				<br />
@@ -88,7 +87,9 @@
 
 					<h:outputLabel value="Telefone: " for="telefoneLiderImediato"
 						styleClass="text-input" />
-					<p:inputMask id="telefoneLiderImediato" value="#{alunoEditMB.bean.telefonesLiderImediato}" mask="(99) 99999-9999"/>		
+					<p:inputMask id="telefoneLiderImediato"
+						value="#{alunoEditMB.bean.telefonesLiderImediato}"
+						mask="(99) 99999-9999" />
 					<p:message for="telefoneLiderImediato" />
 
 
@@ -106,10 +107,24 @@
 
 					<h:outputLabel value="Telefone: " for="telefoneLiderMacro"
 						styleClass="text-input" />
-					<p:inputMask id="telefoneLiderMacro" value="#{alunoEditMB.bean.telefonesLiderMacro}" mask="(99) 99999-9999"/>						
+					<p:inputMask id="telefoneLiderMacro"
+						value="#{alunoEditMB.bean.telefonesLiderMacro}"
+						mask="(99) 99999-9999" />
 					<p:message for="telefoneLiderMacro" />
 
 
+				</h:panelGrid>
+
+				<br />
+				<h:panelGrid id="fieldsProfessores" columns="2">
+
+					<h:outputLabel value="Professores: " for="professores"
+						styleClass="text-input" />
+					<h:inputText id="professores" size="60"
+						value="#{alunoEditMB.bean.professores}"
+						title="Nome dos professores separando por /" required="true" />
+					<p:message for="professores" />
+					
 				</h:panelGrid>
 
 				<br />

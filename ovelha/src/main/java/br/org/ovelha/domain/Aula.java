@@ -12,10 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import br.org.ovelha.constant.MESES;
-
 
 @SequenceGenerator(name = "seqAula", sequenceName = "idAula_seq", allocationSize = 1)
 @Entity
@@ -44,15 +40,27 @@ public class Aula implements EntidadeIf  {
 	@Column(columnDefinition="boolean default false")
 	private boolean a4;
 	
+	@Column(columnDefinition="boolean default false")
+	private boolean a5;
+	
+	@Column(columnDefinition="boolean default false")
+	private boolean a6;
+	
+	@Column(columnDefinition="boolean default false")
+	private boolean a7;
+	
+	@Column(columnDefinition="boolean default false")
+	private boolean a8;
+	
+	@Column(columnDefinition="boolean default false")
+	private boolean a9;
+	
+	@Column(columnDefinition="boolean default false")
+	private boolean a10;
+	
 	@Column
 	private int modulo;//1,2,3,4,5,6
-	
-	@Column
-	private int mes;
-	
-	@Transient
-	private String nomeMes;
-	
+		
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataRegistro;
@@ -105,23 +113,6 @@ public class Aula implements EntidadeIf  {
 		this.aluno = aluno;
 	}
 
-	public int getMes() {
-		return mes;
-	}
-
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-
-	public String getNomeMes() {
-		this.nomeMes = MESES.obterMes(this.mes).getDescricao();
-		return nomeMes;
-	}
-
-	public void setNomeMes(String nomeMes) {
-		this.nomeMes = nomeMes;
-	}
-
 	public boolean isA1() {
 		return a1;
 	}
@@ -152,6 +143,54 @@ public class Aula implements EntidadeIf  {
 
 	public void setA4(boolean a4) {
 		this.a4 = a4;
+	}
+
+	public boolean isA5() {
+		return a5;
+	}
+
+	public void setA5(boolean a5) {
+		this.a5 = a5;
+	}
+
+	public boolean isA6() {
+		return a6;
+	}
+
+	public void setA6(boolean a6) {
+		this.a6 = a6;
+	}
+
+	public boolean isA7() {
+		return a7;
+	}
+
+	public void setA7(boolean a7) {
+		this.a7 = a7;
+	}
+
+	public boolean isA8() {
+		return a8;
+	}
+
+	public void setA8(boolean a8) {
+		this.a8 = a8;
+	}
+
+	public boolean isA9() {
+		return a9;
+	}
+
+	public void setA9(boolean a9) {
+		this.a9 = a9;
+	}
+
+	public boolean isA10() {
+		return a10;
+	}
+
+	public void setA10(boolean a10) {
+		this.a10 = a10;
 	}
 
 
