@@ -29,6 +29,11 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Inject
 	private AulaBC aulaBC;
 	
+	boolean exibeNivel1 = false;
+	boolean exibeNivel2 = false;
+	boolean exibeNivel3 = false;
+	boolean exibeTodosNiveis = false;
+	
 	@Override
 	@Transactional
 	public String delete() {
@@ -65,11 +70,53 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		}
 		return aluno;
 	}
+
+	public boolean isExibeNivel1() {
+		if (!exibeTodosNiveis){
+			exibeNivel1 = getBean().getNivel()==1;	
+		}
+		
+		return exibeNivel1;
+	}
+
+	public void setExibeNivel1(boolean exibeNivel1) {
+		this.exibeNivel1 = exibeNivel1;
+	}
+
+	public boolean isExibeNivel2() {
+		if (!exibeTodosNiveis){
+			exibeNivel2 = getBean().getNivel()==2;	
+		}		
+		return exibeNivel2;
+	}
+
+	public void setExibeNivel2(boolean exibeNivel2) {
+		this.exibeNivel2 = exibeNivel2;
+	}
+
+	public boolean isExibeNivel3() {
+		if (!exibeTodosNiveis){
+			exibeNivel3 = getBean().getNivel()==3;	
+		}
+		
+		return exibeNivel3;
+	}
+
+	public void setExibeNivel3(boolean exibeNivel3) {
+		this.exibeNivel3 = exibeNivel3;
+	}
+
+	public boolean isExibeTodosNiveis() {
+		return exibeTodosNiveis;
+	}
+
+	public void setExibeTodosNiveis(boolean exibeTodosNiveis) {
+		if (exibeTodosNiveis){
+			this.exibeNivel1=true;
+			this.exibeNivel2=true;
+			this.exibeNivel3=true;
+		}
+		this.exibeTodosNiveis = exibeTodosNiveis;
+	}
 	
-	
-	
-
-
-
-
 }

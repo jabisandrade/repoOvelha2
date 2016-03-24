@@ -2,30 +2,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" 
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form>
-		<p:menubar>		
-			<p:submenu label="Alunos">
-				<p:menuitem value="Incluir" url="/pages/private/aluno_edit.jsf"  />
-				<p:menuitem value="Listar" url="/pages/private/aluno_list.jsf" />
-			</p:submenu>	
-			
+	<b:container>
+	<br />
+	<br />
+			<b:navBar>
+			<b:navbarLinks>
+				<b:dropMenu value="Alunos">
+					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_edit.jsf"/>
+					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_list.jsf"/>
+				</b:dropMenu>
 
-			
-			<p:submenu label="Configurações">
-				<p:submenu label="Usuarios">
-					<p:menuitem value="Incluir" url="/pages/private/usuario_edit.jsf" />
-					<p:menuitem value="Listar" url="/pages/private/usuario_list.jsf" />
-					<p:menuitem value="Alterar Senha"
-						url="/pages/private/usuario_senha.jsf" />
-				</p:submenu>
-			</p:submenu>				
+				<b:dropMenu value="Usuários">
+					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_edit.jsf"/>
+					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_list.jsf"/>
+					<b:navLink value="Alterar Senha" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_senha.jsf"/>
+				</b:dropMenu>
 
-			<p:menuitem value="Sobre" url="/pages/private/sobre.jsf" />
-			<p:menuitem value="Sair" action="#{loginMB.logout}" />
+				<b:navLink value="Sobre" href="#{facesContext.externalContext.request.contextPath}/pages/private/sobre.jsf"/>
+				<b:navCommandLink value="Sair" action="#{loginMB.logout}"/>
+			</b:navbarLinks>
+			</b:navBar>
 
-		</p:menubar>
+		</b:container>
 	</h:form>
 
 </ui:composition>

@@ -3,8 +3,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" 
 	template="/pages/private/template/main.xhtml">
 	<ui:define name="body">
+	<b:container>
 		<h:form prependId="false" id="form1">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
@@ -137,5 +139,6 @@
 				</h:panelGrid>
 			</p:fieldset>
 		</h:form>
+		</b:container>
 	</ui:define>
 </ui:composition>

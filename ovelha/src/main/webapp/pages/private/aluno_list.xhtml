@@ -4,9 +4,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br"
+	xmlns:b="http://bootsfaces.net/ui" 
 	template="/pages/private/template/main.xhtml">
 
 	<ui:define name="body">
+	<b:container>
+	
 		<h:form>
 		
 					<p:toolbar>
@@ -24,10 +27,10 @@
 						header="#{messages['label.dialog.alert']}!" severity="alert"
 						widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['botao.dialogo.sim']}"
+						<b:commandButton value="#{messages['botao.dialogo.sim']}"
 							action="#{alunoListMB.deleteSelection}"
 							actionListener="#{alunoListMB.clear}" />
-						<h:commandButton value="#{messages['botao.dialogo.nao']}"
+						<b:commandButton value="#{messages['botao.dialogo.nao']}"
 							onclick="PF('confirmation').hide();" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
@@ -37,20 +40,32 @@
 				<f:facet name="header">Lista de Alunos </f:facet>
 				
 				<p:column style="width:1%;">
+				<f:facet name="header">#</f:facet>
 					<h:selectBooleanCheckbox value="#{alunoListMB.selection[bean.id]}" />
 				</p:column>
 				
 				<p:column style="width:8%;" sortBy="#{bean.nome}">
 					<f:facet name="header">Nome</f:facet>
-					<h:commandLink action="#{alunoListMB.getNextView}" actionListener="#{alunoListMB.clear}">
+					<h:commandLink action="#{alunoListMB.getNextView}" actionListener="#{alunoListMB.clear}"
+						style="color: #4e9a06;text-decoration: underline">
 						<h:outputText value="#{bean.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>				
 
-				<p:column style="width:11%;" sortBy="#{bean.nivel}">
-					<f:facet name="header">Nivel</f:facet>
+				<p:column style="width:4%;" sortBy="#{bean.nivel}">
+					<f:facet name="header">Nível</f:facet>
 					<h:outputText value="#{bean.nivel}" />
+				</p:column>
+				
+				<p:column style="width:4%;" sortBy="#{bean.modulo}">
+					<f:facet name="header">Módulo</f:facet>
+					<h:outputText value="#{bean.modulo}" />
+				</p:column>
+				
+				<p:column style="width:4%;" sortBy="#{bean.licao}">
+					<f:facet name="header">Lição</f:facet>
+					<h:outputText value="#{bean.licao}" />
 				</p:column>
 
 				<p:column style="width:7%;" sortBy="#{bean.nomeLiderImediato}">
@@ -63,16 +78,18 @@
 					<h:outputText value="#{bean.nomeLiderMacro}" />
 				</p:column>
 
+<!-- 
 				<p:column style="width:5%;" sortBy="#{bean.dataRegistro}">
 					<f:facet name="header">Data de Registro</f:facet>
 					<h:outputText value="#{bean.dataRegistro}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>					
 				</p:column>
+ -->				
 				
 				<p:column style="width:5%;" >
 					<f:facet name="header">Presenças</f:facet>
-					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}">
+					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}" style="color: #4e9a06;text-decoration: underline">
 						<h:outputText value="Verificar" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
@@ -80,5 +97,6 @@
 				
 			</p:dataTable>
 		</h:form>
+		</b:container>
 	</ui:define>
 </ui:composition>

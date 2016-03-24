@@ -42,8 +42,14 @@ public class Aluno implements EntidadeIf  {
 	@Column
 	private File foto;
 	
-	@Column
+	@Column(columnDefinition="integer default 1")
 	private int nivel;//1,2,3
+	
+	@Column(columnDefinition="integer default 1")
+	private int modulo;//1,2,3,4,5,6
+	
+	@Column(columnDefinition="integer default 1")
+	private int licao;//1,2,3,4,5,6,7,8,9,10
 	
 	@Column
 	private String nomeLiderImediato;
@@ -218,6 +224,14 @@ public class Aluno implements EntidadeIf  {
 		}
 		return reencontro;
 	}
+	
+	public String getReencontroStr() {
+		if(reEncontro){
+			return "SIM";
+		}else{
+			return "NÃO";
+		}
+	}
 
 	public void setReencontro(Integer reencontro) {
 		if(reencontro==1){
@@ -365,6 +379,22 @@ public class Aluno implements EntidadeIf  {
 
 	public void setProfessores(String professores) {
 		this.professores = professores;
+	}
+	
+	public int getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(int modulo) {
+		this.modulo = modulo;
+	}
+
+	public int getLicao() {
+		return licao;
+	}
+
+	public void setLicao(int licao) {
+		this.licao = licao;
 	}
 
 	

@@ -7,7 +7,7 @@
 
 	<groupId>br.org.ovelha</groupId>
 	<artifactId>ovelha</artifactId>
-	<version>7.0-Beta</version>
+	<version>8.5-Beta</version>
 	<packaging>war</packaging>
 
 	<name></name>
@@ -19,6 +19,25 @@
 		<artifactId>demoiselle-jsf-parent</artifactId>
 		<version>2.5.0-RC1</version>
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>		
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -60,19 +79,32 @@
 			<artifactId>ejb-api</artifactId>
 			<version>3.0</version>
 		</dependency>
-        <dependency>
-        	<groupId>org.jboss.spec.javax.ejb</groupId>
-        	<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-        	<version>1.0.1.Final</version>
-        	<scope>provided</scope>
-        </dependency>	
-        <dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<version>1.0.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>br.gov.frameworkdemoiselle.component</groupId>
 			<artifactId>demoiselle-mail</artifactId>
 			<version>2.0.0</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>	
+		</dependency>
+		<dependency>
+			<groupId>net.bootsfaces</groupId>
+			<artifactId>bootsfaces</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>all-themes</artifactId>
+			<scope>compile</scope>
+			<version>1.0.8</version>
+		</dependency>
+
 		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> 
 			<version>4.3.0.Final</version> </dependency> -->
 	</dependencies>

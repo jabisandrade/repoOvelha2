@@ -23,6 +23,22 @@
 		<listener-class>br.gov.frameworkdemoiselle.util.SessionListener</listener-class>
 	</listener>
 	 -->
+
+ 	
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>south-street</param-value>
+    </context-param>
+   <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>    
+    <context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+     
 	
 	<filter>
 		<filter-name>Filtro de Acesso ao sistema</filter-name>

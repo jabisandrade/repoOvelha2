@@ -2,73 +2,73 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" 
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="main.xhtml">
 
 	<ui:define name="body">
-		<p:panel>
+	<b:container>
+	
+	
+		<b:panel>
 			<h:form prependId="false" id="form1">
-				<p:fieldset legend="Entrar no sistema" toggleable="false"
-					toggleSpeed="500">
+				<b:panel title="Entrar no sistema" collapsed="false">
+
 					<h:panelGroup>
-						<h:panelGrid id="fieldsLoginMsg" columns="2">
-							<h:outputLabel value="Informe seu seu usuário e senha: " />
-							<p:message for="login" />
-						</h:panelGrid>
-						<h:panelGrid id="fieldsLogin" columns="3">
+						<b:panelGrid colSpans="4,4,4" id="fieldsLoginMsg" columns="2" >
+							<b:label text="" >Informe seu seu usuário e senha:</b:label>
+							<b:messages for="mail" />
+						</b:panelGrid>
+						<b:panelGrid colSpans="4,4,4" id="fieldsLogin" columns="3">
 							<br />
 							<br />
-							<h:outputLabel value="E-Mail: " for="login" />
-							<h:inputText id="login" value="#{loginMB.credenciais.username}"
+							<b:label text="E-Mail: " />
+							<b:inputText id="mail" value="#{loginMB.credenciais.username}"
 								title="E-Mail Válido" maxlength="100"
 								validatorMessage="E-mail inválido">
 								<f:validateRegex
 									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-							</h:inputText>
+							</b:inputText>
 							<br />
 							<br />
-							<h:outputLabel value="Senha: " for="senha" />
-							<h:inputSecret id="senha" value="#{loginMB.credenciais.password}"
-								title="Senha com 8 caracteres" maxlength="8" />
+							<b:label text="Senha: " />
+							<b:inputSecret id="senha" value="#{loginMB.credenciais.password}"  title="Senha com 8 caracteres" maxlength="8" />
 
 							<br />
-
-							<h:commandButton value="Login" action="#{loginMB.login}" />
-
-						</h:panelGrid>
-					</h:panelGroup>
-				</p:fieldset>
+							<b:commandButton value="Login" action="#{loginMB.login}">Login</b:commandButton>
+						</b:panelGrid>
+					</h:panelGroup>								
+				</b:panel>							
 			</h:form>
 			
 			<h:form prependId="false" id="form3">
-				<p:fieldset legend="Recuperar Senha" toggleable="true"
-					collapsed="true" toggleSpeed="500">
-					<h:panelGroup>
-						<h:panelGrid id="fieldsRecuperarMsg" columns="2">
-							<h:outputLabel value="Informe seu endereço de email usado para criação do usuário: " />
-							<p:message for="login4" />
-						</h:panelGrid>
 
-						<h:panelGrid id="fieldsRecuperarSenha" columns="7">
+				<b:panel title="Recuperar Senha" collapsed="true">
+					<h:panelGroup>
+						<b:panelGrid colSpans="4,4,4" id="fieldsRecuperarMsg" columns="2">
+							<b:label text="" >Informe seu endereço de email usado para criação do usuário:</b:label>
+						</b:panelGrid>
+
+						<b:panelGrid colSpans="4,4,4" id="fieldsRecuperarSenha" columns="7">
 							<br />
 							<br />
-							<h:outputLabel value="E-Mail: " for="login4"
-								styleClass="text-input" />
-							<h:inputText id="login4"
+							<b:label text="E-mail: " />
+							<b:inputText id="login4"
 								value="#{usuarioPublicoEditMB.bean.login}" title="E-Mail Válido"
 								maxlength="100" validatorMessage="E-mail inválido">
 								<f:validateRegex
 									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-							</h:inputText>
+							</b:inputText>
 
 							<br />
-							<h:commandButton value="Recuperar"
-								action="#{usuarioPublicoEditMB.recuperarSenha}" />
-						</h:panelGrid>
+							<b:commandButton value="Recuperar"
+								action="#{usuarioPublicoEditMB.recuperarSenha}">Recuperar</b:commandButton> 
+						</b:panelGrid>
 					</h:panelGroup>
-				</p:fieldset>
+				</b:panel>				
 			</h:form>
 			<br />
-		</p:panel>
+		</b:panel>
+		</b:container>
 	</ui:define>
 
 </ui:composition>

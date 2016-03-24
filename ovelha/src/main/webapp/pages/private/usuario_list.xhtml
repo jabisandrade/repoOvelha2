@@ -3,13 +3,15 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
 	template="/pages/private/template/main.xhtml">
 
 	<ui:define name="body">
+	<b:container>
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['botao.novo']}"
+					<p:commandButton title="#{messages['botao.novo']}" 
 						icon="ui-icon-document" action="#{usuarioListMB.getNextView}"
 						actionListener="#{usuarioListMB.clear}" ajax="false" />
 
@@ -22,10 +24,10 @@
 						header="#{messages['label.dialog.alert']}!" severity="alert"
 						widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['botao.dialogo.sim']}"
+						<b:commandButton value="#{messages['botao.dialogo.sim']}"
 							action="#{usuarioListMB.deleteSelection}"
 							actionListener="#{usuarioListMB.clear}" />
-						<h:commandButton value="#{messages['botao.dialogo.nao']}"
+						<b:commandButton value="#{messages['botao.dialogo.nao']}"
 							onclick="PF('confirmation').hide();" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
@@ -34,8 +36,10 @@
 			<p:dataTable id="list" var="bean" value="#{usuarioListMB.resultList}" paginator="true" rows="50" paginatorPosition="bottom">
 				<f:facet name="header">Lista de Usuarios do Sistema</f:facet>
 
+
 				<p:column style="width:1%;">
-					<h:selectBooleanCheckbox
+				<f:facet name="header">#</f:facet>
+					<b:selectBooleanCheckbox
 						value="#{usuarioListMB.selection[bean.idUsuario]}" />
 				</p:column>
 
@@ -47,5 +51,6 @@
 
 			</p:dataTable>
 		</h:form>
+		</b:container>
 	</ui:define>
 </ui:composition>

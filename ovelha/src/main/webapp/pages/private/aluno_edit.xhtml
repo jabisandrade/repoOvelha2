@@ -3,27 +3,29 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
 	template="/pages/private/template/main.xhtml">
 	<ui:define name="body">
+	<b:container>
 		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['botao.salvar']}"
-						action="#{alunoEditMB.insert}"
+					<p:commandButton title="#{messages['botao.salvar']}" icon="ui-icon-disk"
+						action="#{alunoEditMB.insert}" value="#{messages['botao.salvar']}"
 						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['botao.salvar']}"
-						action="#{alunoEditMB.update}"
+					<p:commandButton title="#{messages['botao.salvar']}" icon="ui-icon-disk"
+						action="#{alunoEditMB.update}" value="#{messages['botao.salvar']}"
 						rendered="#{alunoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['botao.excluir']}"
-						rendered="#{alunoEditMB.updateMode}"
+					<p:commandButton value="#{messages['botao.excluir']}" icon="ui-icon-trash"
+						rendered="#{alunoEditMB.updateMode}" title="#{messages['botao.excluir']}"
 						onclick="PF('confirmation').show()" type="button" immediate="true"
 						ajax="false" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						header="#{messages['label.dialog.delete']}" showEffect="bounce"
 						hideEffect="explode" severity="alert" widgetVar="confirmation">
-						<p:commandButton value="#{messages['botao.dialogo.sim']}"
+						<b:commandButton value="#{messages['botao.dialogo.sim']}"
 							action="#{alunoEditMB.delete}" immediate="true" ajax="false" />
-						<p:commandButton value="#{messages['botao.dialogo.nao']}"
+						<b:commandButton value="#{messages['botao.dialogo.nao']}"
 							onclick="PF('confirmation').hide();" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
@@ -31,105 +33,132 @@
 
 			<br />
 
-			<p:fieldset legend="Aluno" toggleable="true" toggleSpeed="500">
+			<b:panel title="Aluno" collapsed="false">
 
-				<!-- 
-			<h:panelGrid id="fieldsFotoAluno" columns="2">
-				<h:outputLabel value="Foto : " for="foto" styleClass="text-input" />
-				<p:fileUpload value="#{alunoEditMB.bean.foto}" mode="simple" skinSimple="true" id="foto" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Fotografia invalida. Favor selecionar um arquivo do tipo imagem"/>
-			</h:panelGrid>
-			
-			<br />
-			 -->
+			 <b:messages for="todos"/>
 
-				<h:panelGrid id="fieldsAluno" columns="8">
+				<b:panelGrid id="fieldsAluno" columns="8" colSpans="4,4,4">
 
-					<h:outputLabel value="Nome: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{alunoEditMB.bean.nome}" size="60"
+					<b:label text="Nome: " />
+					<b:inputText id="nome" value="#{alunoEditMB.bean.nome}" 
 						title="Nome do aluno(a)" required="true" />
-					<p:message for="nome" />
+					<h:inputHidden value="branco"/>
 
 
-					<h:outputLabel value="Telefone: " for="telefoneAluno"
-						styleClass="text-input" />
+					<b:label text="Telefone: " />						
 					<p:inputMask id="telefoneAluno"
 						value="#{alunoEditMB.bean.telefonesAluno}" mask="(99) 99999-9999" />
-					<p:message for="telefoneAluno" />
+					<h:inputHidden value="branco"/>
 
-					<h:outputLabel value="Reencontro : " for="rdoReencontro"
-						styleClass="text-input" />
-					<p:selectOneRadio id="rdoReencontro"
+				</b:panelGrid>
+
+				<br />				
+				<b:panelGrid id="fieldsAlunoReencontro" columns="2" colSpans="4,4,4">
+					<b:label text="Reencontro: " />
+					<b:selectOneMenu id="rdoReencontro"
 						value="#{alunoEditMB.bean.reencontro}">
 						<f:selectItem itemLabel="SIM" itemValue="1" />
 						<f:selectItem itemLabel="NAO" itemValue="2" />
-					</p:selectOneRadio>
+					</b:selectOneMenu>
 
-					<h:outputLabel value="Nivel: " for="selecNivel"
-						styleClass="text-input" />
-					<p:selectOneListbox id="selectNivel"
+				</b:panelGrid>
+				
+				<br />
+				<b:panelGrid id="fieldsAlunoNivel" columns="2" colSpans="4,4,4">
+					<b:label text="Nível: " />					
+					<b:selectOneMenu id="selectNivel"
 						value="#{alunoEditMB.bean.nivel}">
 						<f:selectItem itemLabel="1" itemValue="1" />
 						<f:selectItem itemLabel="2" itemValue="2" />
 						<f:selectItem itemLabel="3" itemValue="3" />
-					</p:selectOneListbox>
-
-				</h:panelGrid>
+					</b:selectOneMenu>
+				</b:panelGrid>	
+				
+				<br />
+				<b:panelGrid id="fieldsAlunoModulo" columns="2" colSpans="4,4,4">
+					<b:label text="Módulo: " />					
+					<b:selectOneMenu id="selectModulo"
+						value="#{alunoEditMB.bean.modulo}">
+						<f:selectItem itemLabel="1" itemValue="1" />
+						<f:selectItem itemLabel="2" itemValue="2" />
+						<f:selectItem itemLabel="3" itemValue="3" />
+						<f:selectItem itemLabel="4" itemValue="4" />
+						<f:selectItem itemLabel="5" itemValue="5" />
+						<f:selectItem itemLabel="6" itemValue="6" />
+					</b:selectOneMenu>											
+				</b:panelGrid>
+				
+				<br />
+				<b:panelGrid id="fieldsAlunoLicao" columns="2" colSpans="4,4,4">
+					<b:label text="Lição: " />					
+					<b:selectOneMenu id="selectLicao"
+						value="#{alunoEditMB.bean.licao}">
+						<f:selectItem itemLabel="1" itemValue="1" />
+						<f:selectItem itemLabel="2" itemValue="2" />
+						<f:selectItem itemLabel="3" itemValue="3" />
+						<f:selectItem itemLabel="4" itemValue="4" />
+						<f:selectItem itemLabel="5" itemValue="5" />
+						<f:selectItem itemLabel="6" itemValue="6" />
+						<f:selectItem itemLabel="7" itemValue="7" />
+						<f:selectItem itemLabel="8" itemValue="8" />
+						<f:selectItem itemLabel="9" itemValue="8" />
+						<f:selectItem itemLabel="10" itemValue="10" />
+					</b:selectOneMenu>											
+				</b:panelGrid>				
+				
 
 				<br />
-				<h:panelGrid id="fieldsLiderImediato" columns="5">
+				<b:panelGrid id="fieldsLiderImediato" columns="5" colSpans="4,4,4">
 
-					<h:outputLabel value="Lider Imediato: " for="liderImediato"
-						styleClass="text-input" />
-					<h:inputText id="liderImediato"
-						value="#{alunoEditMB.bean.nomeLiderImediato}" size="60"
+					<b:label text="Lider Imediato: " />
+					<b:inputText id="liderImediato"
+						value="#{alunoEditMB.bean.nomeLiderImediato}" 
 						title="Nome do lider imediato" required="true" />
-					<p:message for="liderImediato" />
+					<h:inputHidden value="branco"/>
 
-					<h:outputLabel value="Telefone: " for="telefoneLiderImediato"
-						styleClass="text-input" />
+					<b:label text="Telefone: " />
 					<p:inputMask id="telefoneLiderImediato"
 						value="#{alunoEditMB.bean.telefonesLiderImediato}"
 						mask="(99) 99999-9999" />
-					<p:message for="telefoneLiderImediato" />
+					<h:inputHidden value="branco"/>
 
 
-				</h:panelGrid>
+				</b:panelGrid>
 
 				<br />
-				<h:panelGrid id="fieldsLiderMacro" columns="6">
+				<b:panelGrid id="fieldsLiderMacro" columns="6" colSpans="4,4,4">
 
-					<h:outputLabel value="Lider Macro : " for="liderMacro"
-						styleClass="text-input" />
-					<h:inputText id="liderMacro"
-						value="#{alunoEditMB.bean.nomeLiderMacro}" size="60"
+					<b:label text="Lider Macro: " />
+					<b:inputText id="liderMacro"
+						value="#{alunoEditMB.bean.nomeLiderMacro}" 
 						title="Nome do lider macro (12)" required="true" />
-					<p:message for="liderMacro" />
+					<h:inputHidden value="branco"/>
 
-					<h:outputLabel value="Telefone: " for="telefoneLiderMacro"
-						styleClass="text-input" />
+					<b:label text="Telefone: " />
 					<p:inputMask id="telefoneLiderMacro"
 						value="#{alunoEditMB.bean.telefonesLiderMacro}"
 						mask="(99) 99999-9999" />
-					<p:message for="telefoneLiderMacro" />
+					<h:inputHidden value="branco"/>
 
 
-				</h:panelGrid>
+				</b:panelGrid>
 
 				<br />
-				<h:panelGrid id="fieldsProfessores" columns="2">
+				<b:panelGrid id="fieldsProfessores" columns="2" colSpans="4,4,4">
 
-					<h:outputLabel value="Professores: " for="professores"
-						styleClass="text-input" />
-					<h:inputText id="professores" size="60"
+					<b:label text="Professores: " />
+					<b:inputText id="professores" 
 						value="#{alunoEditMB.bean.professores}"
 						title="Nome dos professores separando por /" required="true" />
-					<p:message for="professores" />
+					<h:inputHidden value="branco"/>
 					
-				</h:panelGrid>
+				</b:panelGrid>
+				
 
 				<br />
 
-			</p:fieldset>
+			</b:panel>
 		</h:form>
+		</b:container>
 	</ui:define>
 </ui:composition>
