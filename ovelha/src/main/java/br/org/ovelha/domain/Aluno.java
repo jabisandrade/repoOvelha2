@@ -48,7 +48,7 @@ public class Aluno implements EntidadeIf  {
 	@Column(columnDefinition="integer default 1")
 	private int modulo;//1,2,3,4,5,6
 	
-	@Column(columnDefinition="integer default 1")
+	@Column(columnDefinition="integer default 0")
 	private int licao;//1,2,3,4,5,6,7,8,9,10
 	
 	@Column
@@ -82,6 +82,9 @@ public class Aluno implements EntidadeIf  {
 	
 	@Transient
 	private Integer reencontro;
+	
+	@Transient
+	private String ultimaPresenca = "";
 	
 	@Transient
 	private Collection<Aula> aulasModulo1 = new ArrayList<Aula>();
@@ -395,6 +398,59 @@ public class Aluno implements EntidadeIf  {
 
 	public void setLicao(int licao) {
 		this.licao = licao;
+	}
+
+	public String getUltimaPresenca() {
+		Collection<Aula> aulas = new ArrayList<Aula>();
+		if(this.getModulo()== MODULOS.MODULO1.getValor()){
+			aulas = this.getAulasModulo1();
+		}else if(this.getModulo()== MODULOS.MODULO2.getValor()){
+			aulas = this.getAulasModulo2();
+		}else if(this.getModulo()== MODULOS.MODULO3.getValor()){
+			aulas = this.getAulasModulo3();
+		}else if(this.getModulo()== MODULOS.MODULO4.getValor()){
+			aulas = this.getAulasModulo4();
+		}else if(this.getModulo()== MODULOS.MODULO5.getValor()){
+			aulas = this.getAulasModulo5();
+		}else if(this.getModulo()== MODULOS.MODULO6.getValor()){
+			aulas = this.getAulasModulo6();
+		}
+		Aula aula = new Aula();
+		if (aulas.size()>0){
+			aula = aulas.iterator().next();	
+		}
+		
+		boolean presenca = false;
+		
+		if (this.getLicao()==1){
+			presenca = aula.isA1();
+		}else if (this.getLicao()==2){
+			presenca = aula.isA2();
+		}else if (this.getLicao()==3){
+			presenca = aula.isA3();
+		}else if (this.getLicao()==4){
+			presenca = aula.isA4();
+		}else if (this.getLicao()==5){
+			presenca = aula.isA5();
+		}else if (this.getLicao()==6){
+			presenca = aula.isA6();
+		}else if (this.getLicao()==7){
+			presenca = aula.isA7();
+		}else if (this.getLicao()==8){
+			presenca = aula.isA8();
+		}else if (this.getLicao()==9){
+			presenca = aula.isA9();
+		}else if (this.getLicao()==10){
+			presenca = aula.isA10();
+		}
+		
+		ultimaPresenca = presenca?"P":"F";
+		
+		return ultimaPresenca;
+	}
+
+	public void setUltimaPresenca(String ultimaPresenca) {
+		this.ultimaPresenca = ultimaPresenca;
 	}
 
 	

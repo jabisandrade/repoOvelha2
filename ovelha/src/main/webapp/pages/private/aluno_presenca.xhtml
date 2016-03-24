@@ -34,9 +34,6 @@
 				<b:panel title="Presenças do Aluno" collapsed="false">
 
 					<b:panelGrid id="fieldsAluno2" columns="10" colSpans="3,3,3,3">
-						<b:label text="Nível:">#{alunoEditMB.bean.nivel}</b:label>
-						<b:label text="Modulo:">#{alunoEditMB.bean.modulo}</b:label>
-						<b:label text="Lição:">#{alunoEditMB.bean.licao}</b:label>
 						<b:label text="Reencontro:">#{alunoEditMB.bean.reencontroStr}</b:label>
 						<br />
 					</b:panelGrid>
@@ -69,16 +66,43 @@
 						<br />
 					</b:panelGrid>
 
-
+					<br />
 					<b:panel id="fieldsTodosNiveis" collapsed="false">
 
 						<b:panelGrid id="fieldsExibeTodosNiveis" columns="4"
-							colSpans="3,3,3,3">
+							colSpans="4,4,4">
+							
+							<b:label text="Informações do Curso"/>
+							<h:inputHidden value="branco"/>
+							<br />
+							<br />
+							
+							<b:label text="">Nível:</b:label>
+							<b:label text="">#{alunoEditMB.bean.nivel}</b:label>
+							<br />
+							<b:label text="">Módulo</b:label>
+							<b:label text="">#{alunoEditMB.bean.modulo}</b:label>						
+							<br /> 
+							<b:label text="">Presença da Lição Atual:</b:label>
+							<b:label text="">#{alunoEditMB.bean.ultimaPresenca}</b:label>
+							<br />							
+							<b:label text="">Lição Atual:</b:label>
+							<b:inputText id="licaoAtual" value="#{alunoEditMB.bean.licao}" 
+							 required="true" size="3" maxlength="2"/>
+							 
+							<br />
+							<br />
+							<br />
+							<br />	
+							<br />						 
+							 
 							<b:label text="">Exibir Todos os Niveis:</b:label>
 							<p:selectBooleanCheckbox value="#{alunoEditMB.exibeTodosNiveis}">
 								<p:ajax event="change" update="fieldsTodosNiveis" />
 							</p:selectBooleanCheckbox>
 							<br />
+
+							
 						</b:panelGrid>
 
 						<b:panel title="Nivel 1" collapsed="true"

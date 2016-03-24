@@ -24,10 +24,10 @@ public class Aula implements EntidadeIf  {
 	@Column(name = "idAula")
 	private Long idAula;
 	
-	 @ManyToOne
-	 @JoinColumn(name="idAluno", referencedColumnName="idAluno")
-	 private Aluno aluno;
-		
+	@ManyToOne
+	@JoinColumn(name="idAluno", referencedColumnName="idAluno")
+	private Aluno aluno;
+		 
 	@Column(columnDefinition="boolean default false")
 	private boolean a1;
 	
