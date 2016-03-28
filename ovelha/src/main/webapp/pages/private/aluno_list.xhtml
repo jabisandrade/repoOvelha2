@@ -53,12 +53,12 @@
 					</h:commandLink>
 				</p:column>				
 
-				<p:column style="width:4%;" sortBy="#{bean.nivel}">
+				<p:column style="width:3%;" sortBy="#{bean.nivel}">
 					<f:facet name="header">Nível</f:facet>
 					<h:outputText value="#{bean.nivel}" />
 				</p:column>
 				
-				<p:column style="width:4%;" sortBy="#{bean.modulo}">
+				<p:column style="width:3%;" sortBy="#{bean.modulo}">
 					<f:facet name="header">Módulo</f:facet>
 					<h:outputText value="#{bean.modulo}" />
 				</p:column>
@@ -68,6 +68,11 @@
 					<h:outputText value="#{bean.licao}" /> / 
 					<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
 				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.professores}">
+					<f:facet name="header">Professores</f:facet>
+					<h:outputText value="#{bean.professores}" /> / 					
+				</p:column>				
 
 				<p:column style="width:7%;" sortBy="#{bean.nomeLiderImediato}">
 					<f:facet name="header">Lider Imediato</f:facet>

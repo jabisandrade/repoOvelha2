@@ -105,11 +105,11 @@
 							
 						</b:panelGrid>
 
-						<b:panel title="Nivel 1" collapsed="true"
+						<b:panel title="Nivel 1" collapsed="false"
 							rendered="#{alunoEditMB.exibeNivel1}">
 
 
-							<b:panel title="Módulo 1" collapsed="true">
+							<b:panel title="Módulo 1" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 1 or alunoEditMB.exibeTodosNiveis}">
 
 								<p:dataTable id="list1" var="mod1"
 									value="#{alunoEditMB.bean.aulasModulo1}" paginator="false"
@@ -176,7 +176,7 @@
 							</b:panel>
 							<br />
 
-							<b:panel title="Módulo 2" collapsed="true">
+							<b:panel title="Módulo 2" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 2 or alunoEditMB.exibeTodosNiveis}">
 
 								<p:dataTable id="list2" var="mod2"
 									value="#{alunoEditMB.bean.aulasModulo2}" paginator="false"
@@ -244,9 +244,9 @@
 						</b:panel>
 						<br />
 
-						<b:panel title="Nivel 2" collapsed="true"
+						<b:panel title="Nivel 2" collapsed="false"
 							rendered="#{alunoEditMB.exibeNivel2}">
-							<b:panel title="Módulo 3" collapsed="true">
+							<b:panel title="Módulo 3" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 3 or alunoEditMB.exibeTodosNiveis}">
 								<p:dataTable id="list3" var="mod3"
 									value="#{alunoEditMB.bean.aulasModulo3}" paginator="false"
 									paginatorPosition="bottom">
@@ -312,8 +312,8 @@
 							</b:panel>
 							<br />
 
-							<b:panel title="Módulo 4" collapsed="true">
-						toggleSpeed="500">
+							<b:panel title="Módulo 4" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 4 or alunoEditMB.exibeTodosNiveis}">
+						
 						<p:dataTable id="list4" var="mod4"
 									value="#{alunoEditMB.bean.aulasModulo4}" paginator="false"
 									paginatorPosition="bottom">
@@ -380,9 +380,9 @@
 						</b:panel>
 						<br />
 
-						<b:panel title="Nível 3" collapsed="true"
+						<b:panel title="Nível 3" collapsed="false"
 							rendered="#{alunoEditMB.exibeNivel3}">
-							<b:panel title="Módulo 5" collapsed="true">
+							<b:panel title="Módulo 5" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 5 or alunoEditMB.exibeTodosNiveis}">
 								<p:dataTable id="list5" var="mod5"
 									value="#{alunoEditMB.bean.aulasModulo5}" paginator="false"
 									paginatorPosition="bottom">
@@ -448,7 +448,7 @@
 							</b:panel>
 							<br />
 
-							<b:panel title="Módulo 6" collapsed="true">
+							<b:panel title="Módulo 6" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 6 or alunoEditMB.exibeTodosNiveis}">
 								<p:dataTable id="list6" var="mod6"
 									value="#{alunoEditMB.bean.aulasModulo6}" paginator="false"
 									paginatorPosition="bottom">
