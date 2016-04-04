@@ -3,9 +3,12 @@ package br.org.ovelha.view;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.security.RequiredPermission;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -29,6 +32,9 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Inject
 	private AulaBC aulaBC;
 	
+	@Inject
+	private MessageContext messageContext;
+	
 	boolean exibeNivel1 = false;
 	boolean exibeNivel2 = false;
 	boolean exibeNivel3 = false;
@@ -38,7 +44,11 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Transactional
 	public String delete() {
 		this.alunoBC.delete(getId());		
-		return getPreviousView();
+		//messageContext.add("Registro removido com sucesso!", SeverityType.INFO);
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro removido com sucesso!",""));
+		return PAGES.ALUNO_EDIT;		
+
 	}
 
 	@Override
@@ -46,8 +56,11 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	public String insert() {
 		Aluno a = getBean();
 		a.setDataRegistro(new Date());
-		this.alunoBC.insert(a);		
-		return getPreviousView();		
+		this.alunoBC.insert(a);	
+		//messageContext.add("Registro incluído com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro incluído com sucesso!",""));
+		return PAGES.ALUNO_EDIT;		
 	}
 
 	@Override
@@ -57,7 +70,11 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		this.aulaBC.update(a.getAulas());
 		a.setDataAtualizacaoRegistro(new Date());
 		this.alunoBC.update(getBean());
-		return getPreviousView();
+		//messageContext.add("Registro atualizado com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro atualizado com sucesso!",""));
+		return PAGES.ALUNO_EDIT;		
+
 	}
 
 	@Override

@@ -23,8 +23,10 @@
 		<listener-class>br.gov.frameworkdemoiselle.util.SessionListener</listener-class>
 	</listener>
 	 -->
-
- 	
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value> 
+	</context-param> 	
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>south-street</param-value>

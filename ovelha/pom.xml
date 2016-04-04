@@ -7,7 +7,7 @@
 
 	<groupId>br.org.ovelha</groupId>
 	<artifactId>ovelha</artifactId>
-	<version>8.5-Beta</version>
+	<version>9.0-Beta</version>
 	<packaging>war</packaging>
 
 	<name></name>
