@@ -126,7 +126,7 @@
 					<b:label id="lblPastor" text="Líderes de macro encontrados: " />					
 					<p:selectOneMenu id="txtPastor" value="#{alunoEditMB.bean.nomeLiderMacro}" immediate="false">
 						<f:ajax event="change" update="@form,panelAluno,fieldsLiderMacro,liderMacro" render="fieldsLiderMacro" listener="#{alunoEditMB.alternarLiderMacro}" />						
-						<f:selectItem itemLabel="Selecione o pastor" itemValue="Informe o nome do líder da macro" />
+						<f:selectItem itemLabel="Selecione o lider de macro" itemValue="Informe o nome do líder da macro" />
 						<f:selectItems value="#{alunoEditMB.pastores}" var="u" itemLabel="#{u}" itemValue="#{u}"  />
 					</p:selectOneMenu>
 					
