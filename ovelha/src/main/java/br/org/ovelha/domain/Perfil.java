@@ -3,7 +3,8 @@ package br.org.ovelha.domain;
 public enum Perfil {
 	
 	ADM(1, "Administrador"),
-	PUB(2, "Público");
+	PASTOR(2, "Pastor"),
+	PUB(3, "Público");
 
 	private final Integer id;
 	private final String descricao;
@@ -41,7 +42,11 @@ public enum Perfil {
 		return this.equals(Perfil.ADM);
 	}
 	
-	public boolean isPUB() {
+	public boolean isPastor() {
+		return this.equals(Perfil.PASTOR);
+	}
+	
+	public boolean isPublico() {
 		return this.equals(Perfil.PUB);
 	}
 

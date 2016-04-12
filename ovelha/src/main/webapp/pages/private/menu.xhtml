@@ -12,13 +12,13 @@
 			<b:navBar>
 			<b:navbarLinks>
 				<b:dropMenu value="Alunos">
-					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_edit.jsf"/>
+					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_edit.jsf" rendered="#{loginMB.ADM}"/>
 					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_list.jsf"/>
 				</b:dropMenu>
 
 				<b:dropMenu value="Usuários">
-					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_edit.jsf"/>
-					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_list.jsf"/>
+					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_edit.jsf" rendered="#{loginMB.ADM}"/>
+					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_list.jsf" rendered="#{loginMB.ADM}"/>
 					<b:navLink value="Alterar Senha" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_senha.jsf"/>
 				</b:dropMenu>
 

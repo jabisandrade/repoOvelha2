@@ -5,7 +5,6 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
-import br.org.ovelha.domain.Perfil;
 import br.org.ovelha.domain.Usuario;
 import br.org.ovelha.persistence.UsuarioDAO;
 import br.org.ovelha.util.CDIFactory;
@@ -35,11 +34,11 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 			return "Todos os campos devem ser preenchidos corretamente. Por favor, revise os campos preenchidos e repita a operação.";	
 		}
 
-		if(!bean.getLogin().equals(usuarioLogado.getLogin()) && usuarioLogado.getPerfil().isPUB()){
+		if(!bean.getLogin().equals(usuarioLogado.getLogin()) && usuarioLogado.getPerfil().isPublico()){
 			return "Por favor informe seu Login de usuário corretamente!";
 		}
 
-		if(!bean.getSenha().equals(usuarioLogado.getSenha()) && usuarioLogado.getPerfil().isPUB()){
+		if(!bean.getSenha().equals(usuarioLogado.getSenha()) && usuarioLogado.getPerfil().isPublico()){
 			return "Sua senha não foi confirmada para este usuario! Por favor, revise os campos preenchidos e repita a operação.";
 		}
 
@@ -48,7 +47,7 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 		}
 
 		try{
-			if(usuarioLogado.getPerfil().isPUB()){
+			if(usuarioLogado.getPerfil().isPublico()){
 				usuarioLogado.setSenha(bean.getSenhaNova());		
 				this.update(usuarioLogado);
 				return "Senha alterada com sucesso!";				
@@ -116,7 +115,7 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 
 	public String inserir(Usuario usuario) {
 		try {
-			usuario.setPerfil(Perfil.ADM);					
+			//usuario.setPerfil(Perfil.ADM);					
 			Usuario usuarioPesquisado = CDIFactory.getUsuarioDAO().obterSenhaUsuario(usuario.getLogin());
 			
 			if (usuarioPesquisado == null){
@@ -141,7 +140,11 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 				conteudo.append("Sistema Ovelha \n");
 				conteudo.append("http://sistema-ovelha.rhcloud.com");
 				
-				this.insert(usuario);
+				usuario = this.insert(usuario);
+				
+				if (usuario.getPerfil().isPastor()){
+					CDIFactory.getAlunoDAO().atualizarAlunosLiderMacro (usuario);					
+				}
 				emailBC.enviarEmail(destinatario, assunto, conteudo.toString());
 				return "Usuário ["+usuario.getLogin()+"] criado com sucesso.";
 			}else{

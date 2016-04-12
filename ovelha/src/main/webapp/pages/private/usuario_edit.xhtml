@@ -53,6 +53,23 @@
 						<b:label text="Senha: " />
 						<b:inputSecret id="senha" value="#{usuarioEditMB.bean.senha}"
 							title="Senha do usuario" required="true" maxlength="8" />
+						<br />
+						<br />			
+						<b:label text="Perfil: " />	
+						<p:selectOneRadio id="perfil" value="#{usuarioEditMB.bean.perfilId}" >
+							<p:ajax event="change" update="pastor" />
+							<f:selectItem itemValue="1" itemLabel=" Administrador " />
+							<f:selectItem itemValue="2" itemLabel=" Pastor " />						
+						</p:selectOneRadio>
+						<br />
+						<br />
+						<p:outputPanel id="pastor">
+						<b:label id="lblPastor" text="Pastores encontrados no sistema: " rendered="#{usuarioEditMB.bean.perfilId eq 2}"/>					
+						<b:selectOneMenu id="txtPastor" value="#{usuarioEditMB.bean.nome}" rendered="#{usuarioEditMB.bean.perfilId eq 2}">						
+							<!-- <f:selectItem itemLabel="Selecione o pastor" itemValue="" /> -->
+							<f:selectItems value="#{usuarioEditMB.pastores}" var="u" itemLabel="#{u}" itemValue="#{u}"  />
+						</b:selectOneMenu>
+						</p:outputPanel>												
 
 					</b:panelGrid>
 

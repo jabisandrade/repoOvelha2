@@ -33,7 +33,7 @@
 
 			<br />
 
-			<b:panel title="Aluno" collapsed="false">
+			<b:panel title="Aluno" collapsed="false" id="panelAluno">
 
 			 <b:messages for="todos" id="alunoEdit"  />
 
@@ -88,25 +88,18 @@
 					</b:selectOneMenu>											
 				</b:panelGrid>
 				
-				<!-- 
 				<br />
-				<b:panelGrid id="fieldsAlunoLicao" columns="2" colSpans="4,4,4">
-					<b:label text="Lição: " />					
-					<b:selectOneMenu id="selectLicao"
-						value="#{alunoEditMB.bean.licao}">
-						<f:selectItem itemLabel="1" itemValue="1" />
-						<f:selectItem itemLabel="2" itemValue="2" />
-						<f:selectItem itemLabel="3" itemValue="3" />
-						<f:selectItem itemLabel="4" itemValue="4" />
-						<f:selectItem itemLabel="5" itemValue="5" />
-						<f:selectItem itemLabel="6" itemValue="6" />
-						<f:selectItem itemLabel="7" itemValue="7" />
-						<f:selectItem itemLabel="8" itemValue="8" />
-						<f:selectItem itemLabel="9" itemValue="8" />
-						<f:selectItem itemLabel="10" itemValue="10" />
-					</b:selectOneMenu>											
-				</b:panelGrid>
-				 -->				
+				<b:panelGrid id="fieldsLiderImediatoCombo" columns="6" colSpans="4,4,4">
+				
+					<b:label id="lblLider" text="Líderes imediatos encontrados: " />					
+					<p:selectOneMenu id="txtLider" value="#{alunoEditMB.bean.nomeLiderImediato}" immediate="false">
+						<f:ajax event="change" update="@form,panelAluno,fieldsLiderImediato,liderImediato" render="fieldsLiderImediato" listener="#{alunoEditMB.alternarLiderImediato}" />						
+						<f:selectItem itemLabel="Selecione o lider" itemValue="Informe o nome do líder imediato" />
+						<f:selectItems value="#{alunoEditMB.lideres}" var="l" itemLabel="#{l}" itemValue="#{l}"  />
+					</p:selectOneMenu>
+					
+					
+				</b:panelGrid>				
 				
 
 				<br />
@@ -115,7 +108,7 @@
 					<b:label text="Lider Imediato: " />
 					<b:inputText id="liderImediato"
 						value="#{alunoEditMB.bean.nomeLiderImediato}" 
-						title="Nome do lider imediato" required="true" />
+						title="Nome do lider imediato" required="true" disabled="#{alunoEditMB.exibeLiderImediato}" />
 					<h:inputHidden value="branco"/>
 
 					<b:label text="Telefone: " />
@@ -128,12 +121,25 @@
 				</b:panelGrid>
 
 				<br />
+				<b:panelGrid id="fieldsLiderMacroCombo" columns="6" colSpans="4,4,4">
+				
+					<b:label id="lblPastor" text="Líderes de macro encontrados: " />					
+					<p:selectOneMenu id="txtPastor" value="#{alunoEditMB.bean.nomeLiderMacro}" immediate="false">
+						<f:ajax event="change" update="@form,panelAluno,fieldsLiderMacro,liderMacro" render="fieldsLiderMacro" listener="#{alunoEditMB.alternarLiderMacro}" />						
+						<f:selectItem itemLabel="Selecione o pastor" itemValue="Informe o nome do líder da macro" />
+						<f:selectItems value="#{alunoEditMB.pastores}" var="u" itemLabel="#{u}" itemValue="#{u}"  />
+					</p:selectOneMenu>
+					
+					
+				</b:panelGrid>
+				
+				<br />												
 				<b:panelGrid id="fieldsLiderMacro" columns="6" colSpans="4,4,4">
 
 					<b:label text="Lider Macro: " />
 					<b:inputText id="liderMacro"
 						value="#{alunoEditMB.bean.nomeLiderMacro}" 
-						title="Nome do lider macro (12)" required="true" />
+						title="Nome do lider macro (12)" required="true" disabled="#{alunoEditMB.exibeLiderMacro}" />
 					<h:inputHidden value="branco"/>
 
 					<b:label text="Telefone: " />
@@ -144,6 +150,20 @@
 
 
 				</b:panelGrid>
+				
+				<br />
+				<b:panelGrid id="fieldsProfessoresCombo" columns="6" colSpans="4,4,4">
+				
+					<b:label id="lblProfessor" text="Professores encontrados: " />					
+					<p:selectOneMenu id="txtProfessor" value="#{alunoEditMB.bean.professores}" immediate="false">
+						<f:ajax event="change" update="@form,panelAluno,fieldsProfessores,professores" render="fieldsProfessores" listener="#{alunoEditMB.alternarProfessor}" />						
+						<f:selectItem itemLabel="Selecione o(s) professor(es)" itemValue="Informe o nome do(s) professores(s)" />
+						<f:selectItems value="#{alunoEditMB.professores}" var="p" itemLabel="#{p}" itemValue="#{p}"  />
+					</p:selectOneMenu>
+					
+					
+				</b:panelGrid>				
+				
 
 				<br />
 				<b:panelGrid id="fieldsProfessores" columns="2" colSpans="4,4,4">
@@ -151,7 +171,7 @@
 					<b:label text="Professores: " />
 					<b:inputText id="professores" 
 						value="#{alunoEditMB.bean.professores}"
-						title="Nome dos professores separando por /" required="true" />
+						title="Nome dos professores separando por /" required="true" disabled="#{alunoEditMB.exibeProfessor}"/>
 					<h:inputHidden value="branco"/>
 					
 				</b:panelGrid>

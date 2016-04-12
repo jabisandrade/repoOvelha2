@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 import br.org.ovelha.acesso.Credenciais;
 import br.org.ovelha.util.Cripto;
@@ -23,6 +24,9 @@ public class Usuario implements EntidadeIf {
 	@Column(name = "idUsuario")
 	private Long idUsuario;
 
+	@Column
+	private String nome;
+	
 	@NotNull
 	@Column
 	private String login;
@@ -124,6 +128,14 @@ public class Usuario implements EntidadeIf {
 	 */
 	public void setId(Long id) {
 		this.idUsuario = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	

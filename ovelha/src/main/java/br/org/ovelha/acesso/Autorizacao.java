@@ -28,8 +28,17 @@ public class Autorizacao implements Authorizer {
 		String perfil = credenciais.getPerfil().toString();
 		if (perfil.equals(Perfil.ADM.getId().toString())){
 			return true;
+		}else if (perfil.equals(Perfil.PASTOR.getId().toString())){
+			if(resource.equals("aluno") && operation.equals("listar")){
+					return true;
+			}else{
+				return false;	
+			}
+			
+		}else{
+			return false;	
 		}
-		return false;
+		
 	}
 
 }

@@ -28,7 +28,7 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	@Override
 	protected List<Aluno> handleResultList() {
-		return this.bc.findAll();
+		return this.bc.obterAlunos();
 	}
 
 	@Transactional

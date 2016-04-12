@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 import br.org.ovelha.constant.MODULOS;
 
@@ -32,8 +32,7 @@ public class Aluno implements EntidadeIf  {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAluno")
 	@Column(name = "idAluno")
 	private Long idAluno;
-
-	@NotNull
+	
 	@Column
 	private String nome;
 	
@@ -60,6 +59,9 @@ public class Aluno implements EntidadeIf  {
 	
 	@Column
 	private String nomeLiderMacro;
+	
+	@Column
+	private Long idUsuarioLiderMacro;
 	
 	@Column
 	private String telefonesLiderMacro;
@@ -452,6 +454,14 @@ public class Aluno implements EntidadeIf  {
 
 	public void setUltimaPresenca(String ultimaPresenca) {
 		this.ultimaPresenca = ultimaPresenca;
+	}
+
+	public Long getIdUsuarioLiderMacro() {
+		return idUsuarioLiderMacro;
+	}
+
+	public void setIdUsuarioLiderMacro(Long idUsuarioLiderMacro) {
+		this.idUsuarioLiderMacro = idUsuarioLiderMacro;
 	}
 
 	

@@ -1,5 +1,8 @@
 package br.org.ovelha.view;
 
+import java.util.ArrayList;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -14,6 +17,7 @@ import br.org.ovelha.business.UsuarioBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Usuario;
 import br.org.ovelha.message.InfoMessages;
+import br.org.ovelha.util.CDIFactory;
 
 @ViewController
 @PreviousView(PAGES.USUARIO_LIST)
@@ -26,6 +30,15 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	
 	@Inject
 	private MessageContext messageContext;
+	
+	private ArrayList<String> pastores = new ArrayList<String>(); 
+	
+	
+	 @PostConstruct
+	 public void inicializar() {
+		 pastores.addAll(CDIFactory.getAlunoDAO().obterPastoresRelacionadosAlunos());		 
+	 }
+	
 	
 	@Override
 	@Transactional
@@ -70,7 +83,14 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	}
 
 
+	public ArrayList<String> getPastores() {
+		return pastores;
+	}
 
 
+	public void setPastores(ArrayList<String> pastores) {
+		this.pastores = pastores;
+	}
+	
 
 }
