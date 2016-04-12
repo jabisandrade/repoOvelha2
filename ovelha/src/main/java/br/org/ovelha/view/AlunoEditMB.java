@@ -21,7 +21,6 @@ import br.org.ovelha.business.AulaBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Aula;
-import br.org.ovelha.util.CDIFactory;
 
 @ViewController
 @PreviousView(PAGES.ALUNO_LIST)
@@ -55,9 +54,9 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	
 	 @PostConstruct
 	 public void inicializar() {
-		 pastores.addAll(CDIFactory.getAlunoDAO().obterPastoresRelacionadosAlunos());
-		 lideres.addAll(CDIFactory.getAlunoDAO().obterLideresRelacionadosAlunos());
-		 professores.addAll(CDIFactory.getAlunoDAO().obterProfessoresRelacionadosAlunos());
+		 pastores.addAll(alunoBC.obterPastoresRelacionadosAlunos());
+		 lideres.addAll(alunoBC.obterLideresRelacionadosAlunos());
+		 professores.addAll(alunoBC.obterProfessoresRelacionadosAlunos());
 	 }
 	
 	@Override
@@ -77,7 +76,7 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		Aluno a = getBean();
 		a.setDataRegistro(new Date());
 		
-		Long idPastor = CDIFactory.getAlunoDAO().obterIdUsuarioLiderMacro(getBean().getNomeLiderMacro());
+		Long idPastor = alunoBC.obterIdUsuarioLiderMacro(getBean().getNomeLiderMacro());
 		if(idPastor>0){
 			a.setIdUsuarioLiderMacro(idPastor);	
 		}

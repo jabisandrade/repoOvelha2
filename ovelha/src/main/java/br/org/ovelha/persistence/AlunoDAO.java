@@ -15,9 +15,9 @@ import br.org.ovelha.domain.Usuario;
 public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 	
 	private static final long serialVersionUID = 1L;
-	
-    public List<String> obterPastoresRelacionadosAlunos(){
-    	ArrayList<String> pastores = new ArrayList<String>();
+	    
+    public List<Aluno> obterQuantitativoAlunosPorMacro(){
+    	List<Aluno> alunos = new ArrayList<Aluno>();
 		StringBuilder jpql = new StringBuilder();
 		jpql.append(" select a.nomeLiderMacro, count(a.nomeLiderMacro) from Aluno a group by a.nomeLiderMacro");
 		Query q = createQuery(jpql.toString());
@@ -25,9 +25,12 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		@SuppressWarnings("unchecked")
 		List<Object[]> lista = q.getResultList();
 		for (Object[] c:lista) {
-			pastores.add(c[0].toString());
+			Aluno a = new Aluno();
+			a.setNomeLiderMacro(c[0].toString());
+			a.setTotalAlunos(Integer.parseInt(c[1].toString()));
+			alunos.add(a);						
 		}
-		return pastores;
+		return alunos;
   
     }
     

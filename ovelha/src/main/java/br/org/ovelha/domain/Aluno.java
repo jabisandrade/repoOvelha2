@@ -17,7 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.Null;
 
 import br.org.ovelha.constant.MODULOS;
 
@@ -85,6 +84,9 @@ public class Aluno implements EntidadeIf  {
 	
 	@Transient
 	private Integer reencontro;
+	
+	@Transient
+	private int totalAlunos;
 	
 	@Transient
 	private String ultimaPresenca = "";
@@ -462,6 +464,14 @@ public class Aluno implements EntidadeIf  {
 
 	public void setIdUsuarioLiderMacro(Long idUsuarioLiderMacro) {
 		this.idUsuarioLiderMacro = idUsuarioLiderMacro;
+	}
+
+	public int getTotalAlunos() {
+		return totalAlunos;
+	}
+
+	public void setTotalAlunos(int totalAlunos) {
+		this.totalAlunos = totalAlunos;
 	}
 
 	

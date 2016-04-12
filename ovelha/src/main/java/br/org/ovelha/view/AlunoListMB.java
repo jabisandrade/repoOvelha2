@@ -22,13 +22,16 @@ import br.org.ovelha.domain.Aluno;
 public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;
+	private int totalAlunos = 0;
 
 	@Inject
 	private AlunoBC bc;
 
 	@Override
 	protected List<Aluno> handleResultList() {
-		return this.bc.obterAlunos();
+		List<Aluno> alunos = this.bc.obterAlunos();
+		this.totalAlunos = alunos.size();
+		return alunos;
 	}
 
 	@Transactional
@@ -48,6 +51,14 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 	
 	public String alunoPresenca() {
 		return PAGES.ALUNO_PRESENCA;
+	}
+
+	public int getTotalAlunos() {
+		return totalAlunos;
+	}
+
+	public void setTotalAlunos(int totalAlunos) {
+		this.totalAlunos = totalAlunos;
 	}
 	
 	

@@ -21,7 +21,15 @@
 	<b:container>
 
 		<table style="width: 100%">
-
+			<tr>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+	
+				<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+					closable="false" resizable="false" showHeader="false">
+					<p:graphicImage value="../../images/aguarde.gif"/>
+				</p:dialog>
+			</tr>		
 			<tr>
 				<td align="left"><a href="../public/login.jsf"><img
 						src="../../images/com12.png" border="0" /></a></td>
@@ -38,7 +46,7 @@
 							src="../../images/instagram.png" border="0" /></a>
 					</div>
 				</td>
-			</tr>
+			</tr>			
 		</table>
 
 		<table style="width: 100%">

@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/pages/private/template/main.xhtml">
+
+	<ui:define name="body">
+	<b:container>
+		<h:form>
+
+			<p:dataTable id="list" var="bean" value="#{relatorioTotalMacroMB.resultList}" rows="200" paginatorPosition="bottom">
+				<f:facet name="header">Quantitativo de Alunos por Macrocélula</f:facet>
+
+				<p:column style="width:8%;" sortBy="#{bean.nomeLiderMacro}">
+					<f:facet name="header">Nome do Lider Macro</f:facet>
+					<h:outputText value="#{bean.nomeLiderMacro}" />
+				</p:column>
+				
+				<p:column style="width:8%;text-align:center" sortBy="#{bean.totalAlunos}">
+					<f:facet name="header">Total de Alunos</f:facet>
+					<h:outputText value="#{bean.totalAlunos}" />
+				</p:column>				
+				
+			</p:dataTable>
+		</h:form>
+		</b:container>
+	</ui:define>
+</ui:composition>

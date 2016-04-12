@@ -37,7 +37,7 @@
 			</p:toolbar>
 
 			<p:dataTable id="list" var="bean" value="#{alunoListMB.resultList}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
-				<f:facet name="header">Lista de Alunos </f:facet>
+				<f:facet name="header">Lista de Alunos (Total: #{alunoListMB.totalAlunos})</f:facet>
 				
 				<p:column style="width:1%;" rendered="#{loginMB.ADM}">
 				<f:facet name="header">#</f:facet>
@@ -96,7 +96,7 @@
 						<h:outputText value="Verificar" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
-				</p:column>	
+				</p:column>
 				
 			</p:dataTable>
 		</h:form>

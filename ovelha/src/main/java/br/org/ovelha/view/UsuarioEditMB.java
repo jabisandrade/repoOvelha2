@@ -13,11 +13,11 @@ import br.gov.frameworkdemoiselle.security.RequiredPermission;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.org.ovelha.business.AlunoBC;
 import br.org.ovelha.business.UsuarioBC;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Usuario;
 import br.org.ovelha.message.InfoMessages;
-import br.org.ovelha.util.CDIFactory;
 
 @ViewController
 @PreviousView(PAGES.USUARIO_LIST)
@@ -29,6 +29,9 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	private UsuarioBC bc;
 	
 	@Inject
+	private AlunoBC alunoBC;
+	
+	@Inject
 	private MessageContext messageContext;
 	
 	private ArrayList<String> pastores = new ArrayList<String>(); 
@@ -36,7 +39,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	
 	 @PostConstruct
 	 public void inicializar() {
-		 pastores.addAll(CDIFactory.getAlunoDAO().obterPastoresRelacionadosAlunos());		 
+		 pastores.addAll(alunoBC.obterPastoresRelacionadosAlunos());		 
 	 }
 	
 	

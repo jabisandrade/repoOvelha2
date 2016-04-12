@@ -56,6 +56,33 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 			return this.findAll();
 		}					
 	}
+	
+	public List<Aluno> obterQuantitativoAlunosPorMacro(){
+		return CDIFactory.getAlunoDAO().obterQuantitativoAlunosPorMacro();
+	}
+	
+	public List<String> obterPastoresRelacionadosAlunos(){
+		ArrayList<String> pastores = new ArrayList<String>();
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		alunos = CDIFactory.getAlunoDAO().obterQuantitativoAlunosPorMacro();
+		for (Aluno a: alunos){
+			pastores.add(a.getNomeLiderMacro());			
+		}
+		return pastores;
+	}
+	
+	public List<String> obterLideresRelacionadosAlunos() {
+		return CDIFactory.getAlunoDAO().obterLideresRelacionadosAlunos();
+	}
+	
+	public List<String> obterProfessoresRelacionadosAlunos() {
+		return CDIFactory.getAlunoDAO().obterProfessoresRelacionadosAlunos();
+		
+	}
+	
+	public Long obterIdUsuarioLiderMacro(String nome) {
+		return CDIFactory.getAlunoDAO().obterIdUsuarioLiderMacro(nome);
+	}
 
 
 }

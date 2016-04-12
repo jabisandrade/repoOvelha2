@@ -15,6 +15,10 @@
 					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_edit.jsf" rendered="#{loginMB.ADM}"/>
 					<b:navLink value="Listar" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_list.jsf"/>
 				</b:dropMenu>
+				
+				<b:dropMenu value="Relatórios" rendered="#{loginMB.ADM}">
+					<b:navLink value="Quantitativo por macro" href="#{facesContext.externalContext.request.contextPath}/pages/private/total_por_macro.jsf" rendered="#{loginMB.ADM}"/>
+				</b:dropMenu>				
 
 				<b:dropMenu value="Usuários">
 					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/usuario_edit.jsf" rendered="#{loginMB.ADM}"/>
