@@ -11,6 +11,7 @@ import br.org.ovelha.constant.MODULOS;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Aula;
 import br.org.ovelha.domain.Usuario;
+import br.org.ovelha.domain.dto.FiltroPesquisa;
 import br.org.ovelha.persistence.AlunoDAO;
 import br.org.ovelha.util.CDIFactory;
 
@@ -55,6 +56,14 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 		}else{
 			return this.findAll();
 		}					
+	}
+	
+	public List<Aluno> obterAlunos(FiltroPesquisa filtro) {
+		if (filtro.getTipo()==null){
+			return this.obterAlunos();			
+		}else{
+			return CDIFactory.getAlunoDAO().obterAlunos(filtro);
+		}		
 	}
 	
 	public List<Aluno> obterQuantitativoAlunosPorMacro(){

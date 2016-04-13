@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br"
+	xmlns:b="http://bootsfaces.net/ui" 
+	template="/pages/private/template/main.xhtml">
+
+	<ui:define name="body">
+	<b:container>
+	
+		<h:form>
+		
+			<p:toolbar >
+				<p:toolbarGroup align="left" >
+					
+									
+					<p:selectOneMenu id="txtTipo" value="#{alunoFindMB.filtro.tipoBusca}" immediate="false">												
+						<f:selectItem itemLabel="Selecione o tipo de busca" itemValue="" />
+						<f:selectItems value="#{alunoFindMB.tipos}" var="p" itemLabel="#{p}" itemValue="#{p}"  />
+					</p:selectOneMenu>
+					<br />	
+					<br />
+								
+				
+					<p:inputText id="item" value="#{alunoFindMB.filtro.nome}" 
+						title="Nome do aluno(a)" required="true" />
+					<p:commandButton title="#{messages['botao.pesquisar']}" update="list" 
+						icon="ui-icon-search" process="@all"
+						actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>
+											
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="list" var="bean" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
+				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
+				
+				<p:column style="width:1%;" rendered="#{loginMB.ADM}">
+				<f:facet name="header">#</f:facet>
+					<h:selectBooleanCheckbox value="#{alunoFindMB.selection[bean.id]}" />
+				</p:column>
+				
+				<p:column style="width:8%;" sortBy="#{bean.nome}" rendered="#{loginMB.ADM}">
+					<f:facet name="header">Nome</f:facet>
+					<h:commandLink action="#{alunoFindMB.getNextView}" actionListener="#{alunoFindMB.clear}"
+						style="color: #4e9a06;text-decoration: underline">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+												
+
+				<p:column style="width:3%;" sortBy="#{bean.nivel}">
+					<f:facet name="header">Nível</f:facet>
+					<h:outputText value="#{bean.nivel}" />
+				</p:column>
+				
+				<p:column style="width:3%;" sortBy="#{bean.modulo}">
+					<f:facet name="header">Módulo</f:facet>
+					<h:outputText value="#{bean.modulo}" />
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.licao}">
+					<f:facet name="header">Lição / Presença</f:facet>
+					<h:outputText value="#{bean.licao}" /> / 
+					<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.professores}">
+					<f:facet name="header">Professores</f:facet>
+					<h:outputText value="#{bean.professores}" /> / 					
+				</p:column>				
+
+				<p:column style="width:7%;" sortBy="#{bean.nomeLiderImediato}">
+					<f:facet name="header">Lider Imediato</f:facet>
+					<h:outputText value="#{bean.nomeLiderImediato}" />
+				</p:column>
+				
+				<p:column style="width:7%;" sortBy="#{bean.nomeLiderMacro}" rendered="#{loginMB.ADM}">
+					<f:facet name="header">Lider Macro</f:facet>
+					<h:outputText value="#{bean.nomeLiderMacro}" />
+				</p:column>
+	
+				
+				<p:column style="width:5%;" rendered="#{loginMB.ADM}" >
+					<f:facet name="header">Presenças</f:facet>
+					<h:commandLink action="#{alunoFindMB.alunoPresenca}" actionListener="#{alunoFindMB.clear}" style="color: #4e9a06;text-decoration: underline">
+						<h:outputText value="Verificar" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+		</b:container>
+	</ui:define>
+</ui:composition>

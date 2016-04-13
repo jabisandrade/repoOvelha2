@@ -8,8 +8,10 @@ import java.util.List;
 import javax.persistence.Query;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+import br.org.ovelha.constant.PESQUISA_TIPO;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Usuario;
+import br.org.ovelha.domain.dto.FiltroPesquisa;
 
 @PersistenceController
 public class AlunoDAO extends AbstractDAO<Aluno, Long> {
@@ -106,6 +108,27 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		}else{
 			return aluno.getIdUsuarioLiderMacro();	
 		}		 
+	}
+
+	public List<Aluno> obterAlunos(FiltroPesquisa filtro) {
+
+		StringBuilder jpql = new StringBuilder();
+		HashMap<String, Object> parametros = new HashMap<String, Object>();
+
+		jpql.append(" select a from Aluno a");	
+		if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_ALUNO)){
+			jpql.append(" where UPPER(a.nome) like UPPER(:nome)");	
+		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_LIDER_MACRO)){
+			jpql.append(" where UPPER(a.nomeLiderMacro) like UPPER(:nome)");
+		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_LIDER_IMEDIATO)){
+			jpql.append(" where UPPER(a.nomeLiderImediato) like UPPER(:nome)");
+		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_PROFESSOR)){
+			jpql.append(" where UPPER(a.professores) like UPPER(:nome)");						
+		}
+		
+		parametros.put("nome", "%" + filtro.getNome() + "%");
+
+		return executeQuery(jpql.toString(), parametros);
 	}
 
 
