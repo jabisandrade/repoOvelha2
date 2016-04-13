@@ -21,7 +21,9 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
     public List<Aluno> obterQuantitativoAlunosPorMacro(){
     	List<Aluno> alunos = new ArrayList<Aluno>();
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" select a.nomeLiderMacro, count(a.nomeLiderMacro) from Aluno a group by a.nomeLiderMacro");
+		jpql.append("select a.nomeLiderMacro, count(a.nomeLiderMacro) ");
+		jpql.append(" from Aluno a group by a.nomeLiderMacro");
+		jpql.append(" order by a.nomeLiderMacro");
 		Query q = createQuery(jpql.toString());
 			
 		@SuppressWarnings("unchecked")
@@ -39,7 +41,9 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 	public List<String> obterLideresRelacionadosAlunos() {
     	ArrayList<String> lideres = new ArrayList<String>();
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" select a.nomeLiderImediato, count(a.nomeLiderImediato) from Aluno a group by a.nomeLiderImediato");
+		jpql.append("select a.nomeLiderImediato, count(a.nomeLiderImediato)");
+		jpql.append(" from Aluno a group by a.nomeLiderImediato");
+		jpql.append(" order by a.nomeLiderImediato");
 		Query q = createQuery(jpql.toString());
 			
 		@SuppressWarnings("unchecked")
@@ -53,7 +57,9 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 	public List<String> obterProfessoresRelacionadosAlunos() {
     	ArrayList<String> professores = new ArrayList<String>();
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" select a.professores, count(a.professores) from Aluno a group by a.professores");
+		jpql.append("select a.professores, count(a.professores)");
+		jpql.append(" from Aluno a group by a.professores");
+		jpql.append(" order by a.professores");
 		Query q = createQuery(jpql.toString());
 			
 		@SuppressWarnings("unchecked")
