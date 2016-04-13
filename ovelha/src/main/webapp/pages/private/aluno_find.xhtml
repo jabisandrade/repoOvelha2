@@ -66,13 +66,14 @@
 					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}" style="color: #4e9a06;text-decoration: underline">
 						<h:outputText value="#{bean.licao}" /> / 
 						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
+						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 
 				<p:column style="width:5%;" sortBy="#{bean.licao}" rendered="#{not loginMB.ADM}">
 					<f:facet name="header">Lição / Presença</f:facet>
 						<h:outputText value="#{bean.licao}" /> / 
-						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
+						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />s						
 				</p:column>
 				
 				<p:column style="width:5%;" sortBy="#{bean.professores}">
