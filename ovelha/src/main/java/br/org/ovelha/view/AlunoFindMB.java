@@ -72,7 +72,7 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 	public String alunoPresenca() {
 		return PAGES.ALUNO_PRESENCA;
 	}
-
+	
 	public int getTotalAlunos() {
 		return totalAlunos;
 	}
