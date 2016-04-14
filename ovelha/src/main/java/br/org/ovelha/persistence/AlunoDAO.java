@@ -91,6 +91,7 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 
 		jpql.append(" select a from Aluno a");		
 		jpql.append(" where a.idUsuarioLiderMacro = :idLiderMacro ");
+		jpql.append(" order by a.nome ");
 		
 		parametros.put("idLiderMacro", idLiderMacro);
 
@@ -131,9 +132,20 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_PROFESSOR)){
 			jpql.append(" where UPPER(a.professores) like UPPER(:nome)");						
 		}
+		jpql.append(" order by a.nome ");
 		
 		parametros.put("nome", "%" + filtro.getNome() + "%");
 
+		return executeQuery(jpql.toString(), parametros);
+	}
+	
+	public List<Aluno> obterTodos() {
+
+		StringBuilder jpql = new StringBuilder();
+		HashMap<String, Object> parametros = new HashMap<String, Object>();
+
+		jpql.append(" select a from Aluno a");	
+		jpql.append(" order by a.nome ");
 		return executeQuery(jpql.toString(), parametros);
 	}
 

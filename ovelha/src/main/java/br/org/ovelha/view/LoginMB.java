@@ -13,6 +13,8 @@ import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.org.ovelha.acesso.Credenciais;
 import br.org.ovelha.constant.PAGES;
 import br.org.ovelha.domain.Perfil;
+import br.org.ovelha.domain.Usuario;
+import br.org.ovelha.util.CDIFactory;
 
 @ViewController
 @NextView(PAGES.INICIAL)
@@ -35,6 +37,8 @@ public class LoginMB extends AbstractPageBean {
 	
 	private boolean ADM;
 	
+	private Usuario usuarioLogado;
+	
 	@PostConstruct
 	public void init(){
 		if(credenciais.isLoggedIn()){
@@ -46,7 +50,7 @@ public class LoginMB extends AbstractPageBean {
 	public void login(){
 		try{			
 			context.login();
-			messageContext.add("Usuário autenticado com sucesso!");
+			messageContext.add("Usuário autenticado com sucesso!");			
 		}catch(InvalidCredentialsException exception){
 			messageContext.add(exception.getMessage());				
 		}				
@@ -91,6 +95,15 @@ public class LoginMB extends AbstractPageBean {
 
 	public void setIdCasalUsuarioLogado(Long idCasalUsuarioLogado) {
 		this.idCasalUsuarioLogado = idCasalUsuarioLogado;
+	}
+
+	public Usuario getUsuarioLogado() {
+		this.usuarioLogado = CDIFactory.getUsuarioLogado();
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 
 

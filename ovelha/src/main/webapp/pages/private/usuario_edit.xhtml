@@ -39,11 +39,16 @@
 				<b:panel title="Usuário" collapsed="false">
 					<b:messages for="todos" />
 
-					<b:panelGrid colSpans="4,4,4" id="fieldsUsuario" columns="3">
+						<b:panelGrid colSpans="4,4,4" id="fieldsUsuario" columns="3">
+						<b:label text="Nome: " />
+						<b:inputText id="nome" value="#{usuarioEditMB.bean.nome}"
+							title="Nome do usuário" maxlength="200" required="true"/>
+						<br />
+						<br />
 
 						<b:label text="Email: " />
 						<b:inputText id="login" value="#{usuarioEditMB.bean.login}"
-							title="E-Mail Válido" maxlength="100"
+							title="E-Mail Válido" maxlength="100" required="true"
 							validatorMessage="E-mail inválido">
 							<f:validateRegex
 								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />

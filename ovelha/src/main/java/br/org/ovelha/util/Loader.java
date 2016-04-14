@@ -14,6 +14,7 @@ public class Loader {
         Usuario usuario;
  
         usuario = new Usuario();
+        usuario.setNome("Administrador");
         usuario.setLogin("admin@ovelha.com.br");
         usuario.setSenha("admin@");
         usuario.setPerfil(Perfil.ADM);

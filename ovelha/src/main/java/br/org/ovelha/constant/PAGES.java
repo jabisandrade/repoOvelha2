@@ -20,6 +20,7 @@ public final class PAGES {
 	
 	public static final String ALUNO_EDIT = "/pages/private/aluno_edit.jsf";
 	public static final String ALUNO_LIST = "/pages/private/aluno_list.jsf";
+	public static final String ALUNO_FIND = "/pages/private/aluno_find.jsf";
 	public static final String ALUNO_PRESENCA = "/pages/private/aluno_presenca.jsf";
 	
 	public static final String RELATORIO_TOTAL_MACRO = "/pages/private/total_por_macro.jsf";

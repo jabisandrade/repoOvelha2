@@ -9,7 +9,7 @@
 	<b:container>
 	<br />
 	<br />
-			<b:navBar>
+			<b:navBar >
 			<b:navbarLinks>
 				<b:dropMenu value="Alunos">
 					<b:navLink value="Incluir" href="#{facesContext.externalContext.request.contextPath}/pages/private/aluno_edit.jsf" rendered="#{loginMB.ADM}"/>
@@ -29,7 +29,7 @@
 
 				<b:navLink value="Sobre" href="#{facesContext.externalContext.request.contextPath}/pages/private/sobre.jsf"/>
 				<b:navCommandLink value="Sair" action="#{loginMB.logout}"/>
-			</b:navbarLinks>
+			</b:navbarLinks>			
 			</b:navBar>
 
 		</b:container>

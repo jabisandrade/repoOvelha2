@@ -21,8 +21,8 @@ import br.org.ovelha.domain.dto.FiltroPesquisa;
 
 @ViewController
 @NextView(PAGES.ALUNO_EDIT)
-@PreviousView(PAGES.ALUNO_LIST)
-@RequiredPermission(resource="aluno" , operation="listar")
+@PreviousView(PAGES.ALUNO_FIND)
+@RequiredPermission(resource="aluno" , operation="pesquisar")
 public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;

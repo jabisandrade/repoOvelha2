@@ -50,6 +50,8 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	private ArrayList<String> pastores = new ArrayList<String>();
 	private ArrayList<String> lideres = new ArrayList<String>();
 	private ArrayList<String> professores = new ArrayList<String>();
+	private ArrayList<String> modulo = new ArrayList<String>();
+	private ArrayList<String> nivel = new ArrayList<String>();
 	
 	
 	 @PostConstruct
@@ -57,6 +59,15 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		 pastores.addAll(alunoBC.obterPastoresRelacionadosAlunos());
 		 lideres.addAll(alunoBC.obterLideresRelacionadosAlunos());
 		 professores.addAll(alunoBC.obterProfessoresRelacionadosAlunos());
+		 
+		 for (int i = 1; i < 4; i++) {
+			 nivel.add(String.valueOf(i));			
+		 }
+		 
+		 for (int i = 1; i < 7; i++) {
+			 modulo.add(String.valueOf(i));			
+		 }
+		 
 	 }
 	
 	@Override
@@ -95,7 +106,6 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		this.aulaBC.update(a.getAulas());
 		a.setDataAtualizacaoRegistro(new Date());
 		this.alunoBC.update(getBean());
-		//messageContext.add("Registro atualizado com sucesso!");
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro atualizado com sucesso!",""));
 		return PAGES.ALUNO_EDIT;		
@@ -112,7 +122,76 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		}
 		return aluno;
 	}
+	
+	public void alternarNivel(AjaxBehaviorEvent event) throws Exception{
+		modulo = new ArrayList<String>();
+		if (getBean().getNivel()==1){
+			modulo.add("1");
+			modulo.add("2");
+		}else if (getBean().getNivel()==2) {
+			modulo.add("3");
+			modulo.add("4");			
+		}else if (getBean().getNivel()==3) {
+			modulo.add("5");
+			modulo.add("6");
+		}
+		
+	}
 
+	
+	public void alternarLiderMacro(AjaxBehaviorEvent event) throws Exception{
+
+		if (getBean().getNomeLiderMacro()!=null){
+			setExibeLiderMacro(!getBean().getNomeLiderMacro().equals("Informe o nome do líder da macro")); ;
+		} else{
+			setExibeLiderMacro(true);
+		}						
+	}
+	
+	public void alternarLiderImediato(AjaxBehaviorEvent event) throws Exception{
+
+		if (getBean().getNomeLiderImediato()!=null){
+			setExibeLiderImediato(!getBean().getNomeLiderImediato().equals("Informe o nome do líder imediato")); ;
+		} else{
+			setExibeLiderImediato(true);
+		}						
+	}
+	
+	public void alternarProfessor(AjaxBehaviorEvent event) throws Exception{
+
+		if (getBean().getProfessores()!=null){
+			setExibeProfessor(!getBean().getProfessores().equals("Informe o nome do(s) professores(s)")); ;
+		} else{
+			setExibeProfessor(true);
+		}						
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public ArrayList<String> getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(ArrayList<String> modulo) {
+		this.modulo = modulo;
+	}
+
+	public ArrayList<String> getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(ArrayList<String> nivel) {
+		this.nivel = nivel;
+	}	
 	public boolean isExibeNivel1() {
 		if (!exibeTodosNiveis){
 			exibeNivel1 = getBean().getNivel()==1;	
@@ -208,33 +287,8 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	public void setExibeLiderImediato(boolean exibeLiderImediato) {
 		this.exibeLiderImediato = exibeLiderImediato;
 	}
-	
-	public void alternarLiderMacro(AjaxBehaviorEvent event) throws Exception{
 
-		if (getBean().getNomeLiderMacro()!=null){
-			setExibeLiderMacro(!getBean().getNomeLiderMacro().equals("Informe o nome do líder da macro")); ;
-		} else{
-			setExibeLiderMacro(true);
-		}						
-	}
 	
-	public void alternarLiderImediato(AjaxBehaviorEvent event) throws Exception{
-
-		if (getBean().getNomeLiderImediato()!=null){
-			setExibeLiderImediato(!getBean().getNomeLiderImediato().equals("Informe o nome do líder imediato")); ;
-		} else{
-			setExibeLiderImediato(true);
-		}						
-	}
-	
-	public void alternarProfessor(AjaxBehaviorEvent event) throws Exception{
-
-		if (getBean().getProfessores()!=null){
-			setExibeProfessor(!getBean().getProfessores().equals("Informe o nome do(s) professores(s)")); ;
-		} else{
-			setExibeProfessor(true);
-		}						
-	}	
 
 	
 }

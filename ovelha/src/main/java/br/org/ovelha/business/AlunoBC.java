@@ -54,7 +54,7 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 		if (usuarioLogado.getPerfil().isPastor()){
 			return (List<Aluno>) CDIFactory.getAlunoDAO().obterAlunosPorLiderMacro(usuarioLogado.getId());
 		}else{
-			return this.findAll();
+			return CDIFactory.getAlunoDAO().obterTodos();
 		}					
 	}
 	

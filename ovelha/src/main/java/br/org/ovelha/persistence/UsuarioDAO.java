@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
-import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Perfil;
 import br.org.ovelha.domain.Usuario;
 
@@ -73,6 +72,16 @@ public class UsuarioDAO extends AbstractDAO<Usuario, Long> {
 		
 		return executeQuery(jpql.toString(), parametros);  
     }
+    
+	public Collection<Usuario> obterTodos() {
+
+		StringBuilder jpql = new StringBuilder();
+		HashMap<String, Object> parametros = new HashMap<String, Object>();
+
+		jpql.append(" select u from Usuario u");	
+		jpql.append(" order by u.nome ");
+		return executeQuery(jpql.toString(), parametros);
+	}
     
 
 		

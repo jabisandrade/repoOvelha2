@@ -1,5 +1,7 @@
 package br.org.ovelha.business;
 
+import java.util.Collection;
+
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -153,6 +155,10 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 		} catch (Exception e) {
 			return "Usuário ["+usuario.getLogin()+"] não pôde ser criado. Certifique-se que é um email fornecido é valido ou entre em contato com o administrador do sistema.";
 		}		
+	}
+	
+	public Collection<Usuario> obterTodos() {
+		return CDIFactory.getUsuarioDAO().obterTodos();
 	}
 
 

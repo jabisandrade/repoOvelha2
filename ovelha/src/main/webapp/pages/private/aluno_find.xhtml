@@ -13,23 +13,46 @@
 		<h:form>
 		
 			<p:toolbar >
-				<p:toolbarGroup align="left" >
+			
+				<p:toolbarGroup id="tool1" align="left"   >
+				<p:panelGrid columns="4">
+				<h:panelGroup>
+					<p:commandButton title="#{messages['botao.novo']}"
+						icon="ui-icon-document" action="#{alunoFindMB.getNextView}"
+						actionListener="#{alunoFindMB.clear}"  ajax="false" />
+
+					<p:commandButton title="#{messages['botao.excluir']}"
+						icon="ui-icon-trash" onclick="PF('confirmation').show();"
+						type="button" immediate="true" ajax="false" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert"
+						widgetVar="confirmation">
+
+						<b:commandButton value="#{messages['botao.dialogo.sim']}"
+							action="#{alunoFindMB.deleteSelection}"
+							actionListener="#{alunoFindMB.clear}" />
+						<b:commandButton value="#{messages['botao.dialogo.nao']}"
+							onclick="PF('confirmation').hide();" type="button" />
+					</p:confirmDialog>
+				</h:panelGroup>
 					
 									
 					<p:selectOneMenu id="txtTipo" value="#{alunoFindMB.filtro.tipoBusca}" immediate="false">												
 						<f:selectItem itemLabel="Selecione o tipo de busca" itemValue="" />
 						<f:selectItems value="#{alunoFindMB.tipos}" var="p" itemLabel="#{p}" itemValue="#{p}"  />
 					</p:selectOneMenu>
-					<br />	
-					<br />
+
 								
-				
-					<p:inputText id="item" value="#{alunoFindMB.filtro.nome}" 
-						title="Nome do aluno(a)" required="true" />
-					<p:commandButton title="#{messages['botao.pesquisar']}" update="list" 
-						icon="ui-icon-search" process="@all"
-						actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>
-											
+					<h:panelGroup>
+						<p:inputText id="item" value="#{alunoFindMB.filtro.nome}" 
+							title="Nome do aluno(a)" required="true" />
+						<p:commandButton title="#{messages['botao.pesquisar']}" update="list" 
+							icon="ui-icon-search" process="@all"
+							actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>
+					</h:panelGroup>
+				</p:panelGrid>
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -63,7 +86,7 @@
 				
 				<p:column style="width:5%;" sortBy="#{bean.licao}" rendered="#{loginMB.ADM}">
 					<f:facet name="header">Lição / Presença</f:facet>
-					<h:commandLink action="#{alunoListMB.alunoPresenca}" actionListener="#{alunoListMB.clear}" style="color: #4e9a06;text-decoration: underline">
+					<h:commandLink action="#{alunoFindMB.alunoPresenca}" actionListener="#{alunoFindMB.clear}" style="color: #4e9a06;text-decoration: underline">
 						<h:outputText value="#{bean.licao}" /> / 
 						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
 						<f:param name="id" value="#{bean.id}" />

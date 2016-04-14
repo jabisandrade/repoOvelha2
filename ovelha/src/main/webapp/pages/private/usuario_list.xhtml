@@ -42,9 +42,19 @@
 					<b:selectBooleanCheckbox
 						value="#{usuarioListMB.selection[bean.idUsuario]}" />
 				</p:column>
-
+						
+				
 				<p:column style="width:8%;" sortBy="#{bean.login}">
 					<f:facet name="header">Nome</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{alunoListMB.clear}"
+						style="color: #4e9a06;text-decoration: underline">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>									
+				</p:column>
+
+				<p:column style="width:8%;" sortBy="#{bean.login}">
+					<f:facet name="header">Email</f:facet>
 					<h:outputText value="#{bean.login}" />
 				</p:column>
 				

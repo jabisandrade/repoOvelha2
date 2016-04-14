@@ -28,7 +28,7 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 
 	@Override
 	protected List<Usuario> handleResultList() {
-		return this.bc.findAll();
+		return (List<Usuario>) this.bc.obterTodos();
 	}
 
 	@Transactional
