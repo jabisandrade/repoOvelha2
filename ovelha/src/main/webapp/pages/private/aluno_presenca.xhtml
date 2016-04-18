@@ -71,447 +71,438 @@
 
 						<b:panelGrid id="fieldsExibeTodosNiveis" columns="4"
 							colSpans="4,4,4">
-							
-							<b:label text="Informações do Curso"/>
-							<h:inputHidden value="branco"/>
+
+							<b:label text="Informações do Curso" />
+							<h:inputHidden value="branco" />
 							<br />
-							<br />
-							
-							<b:label text="">Nível:</b:label>
-							<b:label text="">#{alunoEditMB.bean.nivel}</b:label>
 							<br />
 							<b:label text="">Módulo</b:label>
-							<b:label text="">#{alunoEditMB.bean.modulo}</b:label>						
-							<br /> 
+							<b:label text="">#{alunoEditMB.bean.modulo}</b:label>
+							<br />
 							<b:label text="">Presença da Lição Atual:</b:label>
 							<b:label text="">#{alunoEditMB.bean.ultimaPresenca}</b:label>
-							<br />							
+							<br />
 							<b:label text="">Lição Atual:</b:label>
-							<b:inputText id="licaoAtual" value="#{alunoEditMB.bean.licao}" 
-							 required="true" size="3" maxlength="2"/>
-							 
+							<b:inputText id="licaoAtual" value="#{alunoEditMB.bean.licao}" style="color: #4e9a06"
+								required="true" size="3" maxlength="2" />
+
 							<br />
 							<br />
 							<br />
-							<br />	
-							<br />						 
-							 
-							<b:label text="">Exibir Todos os Niveis:</b:label>
+							<br />
+							<br />
+
+							<b:label text="">Exibir Todos os Módulos:</b:label>
 							<p:selectBooleanCheckbox value="#{alunoEditMB.exibeTodosNiveis}">
 								<p:ajax event="change" update="fieldsTodosNiveis" />
 							</p:selectBooleanCheckbox>
 							<br />
 
-							
+
 						</b:panelGrid>
 
-						<b:panel title="Nivel 1" collapsed="false"
-							rendered="#{alunoEditMB.exibeNivel1}">
+						<b:panel title="Módulo 1" collapsed="false" style="background-color:#D0F5A9"
+							rendered="#{alunoEditMB.bean.modulo eq 1 or alunoEditMB.exibeTodosNiveis}">
+
+							<p:dataTable id="list1" var="mod1"
+								value="#{alunoEditMB.bean.aulasModulo1}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 1 </f:facet>
+
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a1}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a2}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a3}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a4}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a5}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a6}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a7}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a8}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a9}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod1.a10}" />
+								</p:column>
 
 
-							<b:panel title="Módulo 1" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 1 or alunoEditMB.exibeTodosNiveis}">
-
-								<p:dataTable id="list1" var="mod1"
-									value="#{alunoEditMB.bean.aulasModulo1}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 1 </f:facet>
-
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a1}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a2}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a3}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a4}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a5}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a6}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a7}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a8}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a9}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod1.a10}" />
-									</p:column>
-
-
-								</p:dataTable>
-							</b:panel>
-							<br />
-
-							<b:panel title="Módulo 2" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 2 or alunoEditMB.exibeTodosNiveis}">
-
-								<p:dataTable id="list2" var="mod2"
-									value="#{alunoEditMB.bean.aulasModulo2}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 2 </f:facet>
-
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a1}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a2}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a3}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a4}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a5}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a6}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a7}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a8}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a9}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod2.a10}" />
-									</p:column>
-
-								</p:dataTable>
-
-							</b:panel>
+							</p:dataTable>
 						</b:panel>
 						<br />
 
-						<b:panel title="Nivel 2" collapsed="false"
-							rendered="#{alunoEditMB.exibeNivel2}">
-							<b:panel title="Módulo 3" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 3 or alunoEditMB.exibeTodosNiveis}">
-								<p:dataTable id="list3" var="mod3"
-									value="#{alunoEditMB.bean.aulasModulo3}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 3 </f:facet>
+						<b:panel title="Módulo 2" collapsed="false" style="background-color:#D0F5A9"
+							rendered="#{alunoEditMB.bean.modulo eq 2 or alunoEditMB.exibeTodosNiveis}">
 
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
+							<p:dataTable id="list2" var="mod2"
+								value="#{alunoEditMB.bean.aulasModulo2}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 2 </f:facet>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a1}" />
-									</p:column>
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a2}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a1}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a3}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a2}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a4}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a3}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a5}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a4}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a6}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a5}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a7}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a6}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a8}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a7}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a9}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a8}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod3.a10}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a9}" />
+								</p:column>
 
-								</p:dataTable>
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod2.a10}" />
+								</p:column>
 
-							</b:panel>
-							<br />
+							</p:dataTable>
 
-							<b:panel title="Módulo 4" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 4 or alunoEditMB.exibeTodosNiveis}">
-						
-						<p:dataTable id="list4" var="mod4"
-									value="#{alunoEditMB.bean.aulasModulo4}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 4 </f:facet>
-
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a1}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a2}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a3}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a4}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a5}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a6}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a7}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a8}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a9}" />
-									</p:column>
-
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod4.a10}" />
-									</p:column>
-
-								</p:dataTable>
-
-							</b:panel>
 						</b:panel>
 						<br />
 
-						<b:panel title="Nível 3" collapsed="false"
-							rendered="#{alunoEditMB.exibeNivel3}">
-							<b:panel title="Módulo 5" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 5 or alunoEditMB.exibeTodosNiveis}">
-								<p:dataTable id="list5" var="mod5"
-									value="#{alunoEditMB.bean.aulasModulo5}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 5 </f:facet>
+						<b:panel title="Módulo 3" collapsed="false" style="background-color:#D0F5A9" 
+							rendered="#{alunoEditMB.bean.modulo eq 3 or alunoEditMB.exibeTodosNiveis}">
+							<p:dataTable id="list3" var="mod3"
+								value="#{alunoEditMB.bean.aulasModulo3}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 3 </f:facet>
 
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a1}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a1}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a2}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a2}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a3}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a3}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a4}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a4}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a5}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a5}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a6}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a6}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a7}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a7}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a8}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a8}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a9}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a9}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod5.a10}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod3.a10}" />
+								</p:column>
 
-								</p:dataTable>
+							</p:dataTable>
 
-							</b:panel>
-							<br />
+						</b:panel>
+						<br />
 
-							<b:panel title="Módulo 6" collapsed="false" rendered="#{alunoEditMB.bean.modulo eq 6 or alunoEditMB.exibeTodosNiveis}">
-								<p:dataTable id="list6" var="mod6"
-									value="#{alunoEditMB.bean.aulasModulo6}" paginator="false"
-									paginatorPosition="bottom">
-									<f:facet name="header">Lista de presenças no módulo 6 </f:facet>
+						<b:panel title="Módulo 4" collapsed="false" style="background-color:#D0F5A9"
+							rendered="#{alunoEditMB.bean.modulo eq 4 or alunoEditMB.exibeTodosNiveis}">
 
-									<p:column style="width:2%;">
-										<f:facet name="header">#</f:facet>
-										<h:outputText value="Lições" />
-									</p:column>
+							<p:dataTable id="list4" var="mod4"
+								value="#{alunoEditMB.bean.aulasModulo4}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 4 </f:facet>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">1</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a1}" />
-									</p:column>
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">2</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a2}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a1}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">3</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a3}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a2}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">4</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a4}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a3}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">5</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a5}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a4}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">6</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a6}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a5}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">7</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a7}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a6}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">8</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a8}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a7}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">9</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a9}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a8}" />
+								</p:column>
 
-									<p:column style="width:1%;">
-										<f:facet name="header">10</f:facet>
-										<h:selectBooleanCheckbox value="#{mod6.a10}" />
-									</p:column>
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a9}" />
+								</p:column>
 
-								</p:dataTable>
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod4.a10}" />
+								</p:column>
 
-							</b:panel>
+							</p:dataTable>
+
+						</b:panel>
+						<br />
+
+						<b:panel title="Módulo 5" collapsed="false" style="background-color:#D0F5A9"
+							rendered="#{alunoEditMB.bean.modulo eq 5 or alunoEditMB.exibeTodosNiveis}">
+							<p:dataTable id="list5" var="mod5"
+								value="#{alunoEditMB.bean.aulasModulo5}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 5 </f:facet>
+
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a1}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a2}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a3}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a4}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a5}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a6}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a7}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a8}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a9}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod5.a10}" />
+								</p:column>
+
+							</p:dataTable>
+
+						</b:panel>
+						<br />
+
+						<b:panel title="Módulo 6" collapsed="false" style="background-color:#D0F5A9"
+							rendered="#{alunoEditMB.bean.modulo eq 6 or alunoEditMB.exibeTodosNiveis}">
+							<p:dataTable id="list6" var="mod6"
+								value="#{alunoEditMB.bean.aulasModulo6}" paginator="false"
+								paginatorPosition="bottom">
+								<f:facet name="header">Lista de presenças no módulo 6 </f:facet>
+
+								<p:column style="width:2%;">
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="Lições" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">1</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a1}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">2</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a2}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">3</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a3}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">4</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a4}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">5</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a5}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">6</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a6}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">7</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a7}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">8</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a8}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">9</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a9}" />
+								</p:column>
+
+								<p:column style="width:1%;">
+									<f:facet name="header">10</f:facet>
+									<h:selectBooleanCheckbox value="#{mod6.a10}" />
+								</p:column>
+
+							</p:dataTable>
+
 						</b:panel>
 					</b:panel>
 				</b:panel>

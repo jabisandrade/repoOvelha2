@@ -63,14 +63,7 @@
 
 				</b:panelGrid>
 				
-				<br />
-				<b:panelGrid id="fieldsAlunoNivel" columns="2" colSpans="4,4,4">
-					<b:label text="Nível: " />					
-					<p:selectOneMenu id="selectNivel"	value="#{alunoEditMB.bean.nivel}" immediate="false">
-						<f:ajax event="change"  update="selectModulo" render="selectModulo" listener="#{alunoEditMB.alternarNivel}" />
-						<f:selectItems value="#{alunoEditMB.nivel}" var="n" itemLabel="#{n}" itemValue="#{n}"  />
-					</p:selectOneMenu>
-				</b:panelGrid>	
+
 				
 				<br />
 				<b:panelGrid id="fieldsAlunoModulo" columns="2" colSpans="4,4,4">
