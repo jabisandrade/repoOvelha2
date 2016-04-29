@@ -70,25 +70,24 @@
 					</h:commandLink>
 				</p:column>
 				
-				<p:column style="width:3%;" sortBy="#{bean.modulo}">
-					<f:facet name="header">Módulo</f:facet>
-					<h:outputText value="#{bean.modulo}" />
+				<p:column style="width:5%;" sortBy="#{bean.modulo}" styleClass="text-center">
+					<f:facet name="header">Módulo/Lição</f:facet>
+					<h:outputText value="#{bean.modulo}" /> /
+					<h:outputText value="#{bean.licao}" />
 				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.licao}" rendered="#{loginMB.ADM}">
-					<f:facet name="header">Lição / Presença</f:facet>
+				<p:column style="width:4%;" sortBy="#{bean.ultimaPresenca}" rendered="#{loginMB.ADM}" styleClass="text-center">
+					<f:facet name="header">Presença</f:facet>
 					<h:commandLink action="#{alunoFindMB.alunoPresenca}" actionListener="#{alunoFindMB.clear}" style="color: #4e9a06;text-decoration: underline">
-						<h:outputText value="#{bean.licao}" /> / 
 						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-
-				<p:column style="width:5%;" sortBy="#{bean.licao}" rendered="#{not loginMB.ADM}">
-					<f:facet name="header">Lição / Presença</f:facet>
-						<h:outputText value="#{bean.licao}" /> / 
-						<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />s						
-				</p:column>
+				
+				<p:column style="width:4%;" sortBy="#{bean.ultimaPresenca}" rendered="#{not loginMB.ADM}" styleClass="text-center">
+					<f:facet name="header">Presença</f:facet>
+					<h:outputText value="#{bean.ultimaPresenca}" styleClass="#{bean.ultimaPresenca eq 'F'?'vermelho':'azul'}" />
+				</p:column>	
 				
 				<p:column style="width:9%;" sortBy="#{bean.professores}">
 					<f:facet name="header">Professores</f:facet>
