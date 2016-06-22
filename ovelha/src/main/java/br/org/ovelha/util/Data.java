@@ -14,7 +14,7 @@ public final class Data {
 	public static final String MES_NUMERO = "MM";
 	public static final String ANO_NUMERO = "yyyy";
 	public static final String DIA_MES_NUMERO = "dd/MM";
-	private static final String DATA_HORA_BD = "yyyy-MM-dd HH:mm:ss";
+	private static final String DATA_HORA_BD = "yyyy-MM-dd HH:mm";
 	
 	public static Date inicioMes() {
     	Calendar inicio = Calendar.getInstance();

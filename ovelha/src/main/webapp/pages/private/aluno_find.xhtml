@@ -8,19 +8,7 @@
 	template="/pages/private/template/main.xhtml">
 
 	<ui:define name="body">
-	<b:container>
-				                    <script>
-      $(document).ready(function() {
-          $('#checkAll').on('click', function() {
-               //selects all records on the displayed page if pagination is supported.
-               list.selectAllRowsOnPage();
-
-               //or you can select all the rows across all pages.
-               list.selectAllRows();
-          });
-      });
- </script>
-	
+	<b:container>                 
 		<h:form>
 			<h:panelGroup>
 				<b:messages for="todos" id="editCurso"  />
@@ -69,8 +57,7 @@
 								<b:label text="Lição: " />					
 								<p:selectOneMenu id="selectLicao" value="#{alunoFindMB.licao}">
 									<f:selectItems value="#{alunoFindMB.licoes}" var="l" itemLabel="#{l}" itemValue="#{l}"  />
-								</p:selectOneMenu>
-							
+								</p:selectOneMenu>							    
 								<b:label text="Presença: " />					
 								<p:selectOneMenu id="selectPresenca" value="#{alunoFindMB.licaoPresenca}">
 									<f:selectItem itemLabel="P - Presente" itemValue="1" />
@@ -110,8 +97,7 @@
 							title="Nome do aluno(a)" requiredMessage="Favor consultar e selecionar os registros antes de realizar a operação."/>
 						<p:commandButton title="#{messages['botao.pesquisar']}" update="list" 
 							icon="ui-icon-search" process="@all"
-							actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>
-						
+							actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>						
 					</h:panelGroup>
 
 				</p:panelGrid>
@@ -120,12 +106,13 @@
 				 
 			</p:toolbar>
 
-			<p:dataTable id="list" widgetVar="list" var="bean" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
+			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoFindMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
 				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
 				
-				<p:column style="width:1%;" rendered="#{loginMB.ADM}">
-				<f:facet name="header"><input id="checkAll" type="checkbox" /></f:facet>
-					<h:selectBooleanCheckbox value="#{alunoFindMB.selection[bean.id]}" />
+				
+				<p:column style="width:1%;" selectionMode="multiple" rendered="#{loginMB.ADM}">
+				<f:facet name="header">#</f:facet>
+					<!-- <h:selectBooleanCheckbox value="#{alunoFindMB.selection[bean.id]}" /> -->
 				</p:column>
 				
 				<p:column style="width:9%;" sortBy="#{bean.nome}" rendered="#{loginMB.ADM}">

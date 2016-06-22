@@ -138,7 +138,7 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		}else if(filtro.getTipo().equals(PESQUISA_TIPO.MODULO)){
 			jpql.append(" where a.modulo =:modulo");						
 		}else{
-			jpql.append(" where a.dataAtualizacaoRegistro >:data");
+			jpql.append(" where a.dataAtualizacaoRegistro >=:data");
 		}
 		
 		jpql.append(" order by a.nome ");

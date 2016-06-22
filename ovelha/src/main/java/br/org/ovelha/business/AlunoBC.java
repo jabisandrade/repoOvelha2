@@ -98,15 +98,11 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 		return CDIFactory.getAlunoDAO().obterIdUsuarioLiderMacro(nome);
 	}
 
-	public void atualizarInformacoesCurso(Long id, int modulo, int licaoAtual, int licao, boolean licaoPresenca) {
-		Aluno a = this.load(id);
-		a.setDataAtualizacaoRegistro(new Date());
-		a.setModulo(modulo);
-		a.setLicao(licaoAtual);
+	public void atualizarInformacoesCurso(Aluno a, int licao, boolean licaoPresenca) {
 		
 		Collection<Aula> aulas = new ArrayList<Aula>();
 		
-		switch (modulo) {
+		switch (a.getModulo()) {
 		case 1:
 			aulas = getAulasAlteradas(a.getAulasModulo1(), licao, licaoPresenca);
 			a.getAulasModulo1().removeAll(a.getAulasModulo1());

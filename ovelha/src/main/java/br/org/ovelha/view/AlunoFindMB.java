@@ -33,6 +33,7 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 	private int totalAlunos = 0;
 	private FiltroPesquisa filtro = new FiltroPesquisa();
 	private List<Aluno> alunos = new ArrayList<Aluno>();
+	private List<Aluno> alunosSelecionados = new ArrayList<Aluno>();
 	private List<String> tipos = new ArrayList<String>();
 	private ArrayList<String> modulos = new ArrayList<String>();
 	private ArrayList<String> licoes = new ArrayList<String>();
@@ -42,6 +43,7 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 	private int licaoAtual;
 	private Date dataUltimaAtualizacao;
 	private boolean atualizou=false;
+	private boolean deletou=false;
 			
 	@Inject
 	private AlunoBC bc;
@@ -63,6 +65,9 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 		 }
 		 dataUltimaAtualizacao = bc.obterUltimaDataAtualizacao();
 		 alunos = handleResultList();
+		 
+		atualizou=false;
+		deletou=false;
 			 
 	 }
 	 
@@ -89,43 +94,34 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 
 	@Transactional
 	public String deleteSelection() {
-		boolean delete;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long id = iter.next();
-			delete = getSelection().get(id);
-
-			if (delete) {
-				bc.delete(id);
-				iter.remove();
-			}
+		for (Aluno a: alunosSelecionados){
+			bc.delete(a.getId());
 		}
 		
+		if (atualizou){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Alunos removidos da base.",""));
+		}		
 		return getPreviousView();
 	}
 	
 	@Transactional
 	public String updateSelection() {
-		boolean update; 
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long id = iter.next();
-			update = getSelection().get(id);
-
-			if (update) {
-				bc.atualizarInformacoesCurso(id, modulo, licaoAtual,licao,licaoPresenca==1?true:false);
-				iter.remove();
-				atualizou = true;
-			}
+		
+		for (Aluno a: alunosSelecionados){
+			a.setDataAtualizacaoRegistro(dataUltimaAtualizacao);
+			a.setModulo(modulo);
+			a.setLicao(licaoAtual);
+			
+			bc.atualizarInformacoesCurso(a, licao,licaoPresenca==1?true:false);
+			atualizou = true;			
 		}
 		
 		if (atualizou){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_INFO,"Alunos atualizados recentemente em "+Data.dataHoraExtenso(dataUltimaAtualizacao)+".",""));
 
-		}/*else{
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,"É necessario realizar uma pesquisa com um tipo de busca e na sequência a seleção dos registros que se deseja atualizar.",""));
-			
-		}*/
+		}
 		return getPreviousView();
 	}
 	
@@ -212,6 +208,26 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 
 	public void setLicaoPresenca(int licaoPresenca) {
 		this.licaoPresenca = licaoPresenca;
+	}
+
+
+	public List<Aluno> getAlunosSelecionados() {
+		return alunosSelecionados;
+	}
+
+
+	public void setAlunosSelecionados(List<Aluno> alunosSelecionados) {
+		this.alunosSelecionados = alunosSelecionados;
+	}
+
+
+	public boolean isDeletou() {
+		return deletou;
+	}
+
+
+	public void setDeletou(boolean deletou) {
+		this.deletou = deletou;
 	}
 
 
