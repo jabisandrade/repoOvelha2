@@ -1,5 +1,6 @@
 package br.org.ovelha.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +14,7 @@ public final class Data {
 	public static final String MES_NUMERO = "MM";
 	public static final String ANO_NUMERO = "yyyy";
 	public static final String DIA_MES_NUMERO = "dd/MM";
+	private static final String DATA_HORA_BD = "yyyy-MM-dd HH:mm:ss";
 	
 	public static Date inicioMes() {
     	Calendar inicio = Calendar.getInstance();
@@ -49,6 +51,16 @@ public final class Data {
 	public static String dataHoraExtenso(Date date){
 		return new SimpleDateFormat(DATA_HORA_EXTENSO,BRASIL).format(date);
 	}
+	
+	public static Date toDate(String date){
+		try {
+			return new SimpleDateFormat(DATA_HORA_BD).parse(date);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
+	
+
 	
 	
 }

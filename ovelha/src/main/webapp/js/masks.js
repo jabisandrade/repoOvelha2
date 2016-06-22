@@ -9,4 +9,13 @@ function applyMasks() {
 
 	
     });
+    $(document).ready(function() {
+        $('#checkAll').on('click', function() {
+             //selects all records on the displayed page if pagination is supported.
+             //list.selectAllRowsOnPage();
+        	 alert ('javascript funcionando');
+             //or you can select all the rows across all pages.
+             //list.selectAllRows();
+        });
+    });
 }

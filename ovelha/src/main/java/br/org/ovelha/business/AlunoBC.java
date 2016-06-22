@@ -8,6 +8,7 @@ import java.util.List;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.org.ovelha.constant.MODULOS;
+import br.org.ovelha.constant.PESQUISA_TIPO;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Aula;
 import br.org.ovelha.domain.Usuario;
@@ -59,13 +60,17 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 	}
 	
 	public List<Aluno> obterAlunos(FiltroPesquisa filtro) {
-		if (filtro.getTipo()==null){
+		if (filtro==null){
 			return this.obterAlunos();			
 		}else{
 			return CDIFactory.getAlunoDAO().obterAlunos(filtro);
 		}		
 	}
 	
+	public Date obterUltimaDataAtualizacao() {
+		return CDIFactory.getAlunoDAO().obterUltimaDataAtualizacao();
+	}
+
 	public List<Aluno> obterQuantitativoAlunosPorMacro(){
 		return CDIFactory.getAlunoDAO().obterQuantitativoAlunosPorMacro();
 	}
@@ -91,6 +96,105 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 	
 	public Long obterIdUsuarioLiderMacro(String nome) {
 		return CDIFactory.getAlunoDAO().obterIdUsuarioLiderMacro(nome);
+	}
+
+	public void atualizarInformacoesCurso(Long id, int modulo, int licaoAtual, int licao, boolean licaoPresenca) {
+		Aluno a = this.load(id);
+		a.setDataAtualizacaoRegistro(new Date());
+		a.setModulo(modulo);
+		a.setLicao(licaoAtual);
+		
+		Collection<Aula> aulas = new ArrayList<Aula>();
+		
+		switch (modulo) {
+		case 1:
+			aulas = getAulasAlteradas(a.getAulasModulo1(), licao, licaoPresenca);
+			a.getAulasModulo1().removeAll(a.getAulasModulo1());
+			a.getAulasModulo1().addAll(aulas);
+			break;
+		
+		case 2:
+			aulas = getAulasAlteradas(a.getAulasModulo2(), licao, licaoPresenca);
+			a.getAulasModulo2().removeAll(a.getAulasModulo2());
+			a.getAulasModulo2().addAll(aulas);			
+			break;
+		
+		case 3:
+			aulas = getAulasAlteradas(a.getAulasModulo3(), licao, licaoPresenca);
+			a.getAulasModulo3().removeAll(a.getAulasModulo3());
+			a.getAulasModulo3().addAll(aulas);			
+			break;
+			
+		case 4:
+			aulas = getAulasAlteradas(a.getAulasModulo4(), licao, licaoPresenca);
+			a.getAulasModulo4().removeAll(a.getAulasModulo4());
+			a.getAulasModulo4().addAll(aulas);			
+			break;
+			
+		case 5:
+			aulas = getAulasAlteradas(a.getAulasModulo5(), licao, licaoPresenca);
+			a.getAulasModulo5().removeAll(a.getAulasModulo5());
+			a.getAulasModulo5().addAll(aulas);			
+			break;
+			
+		case 6:
+			aulas = getAulasAlteradas(a.getAulasModulo6(), licao, licaoPresenca);
+			a.getAulasModulo1().removeAll(a.getAulasModulo1());
+			a.getAulasModulo1().addAll(aulas);			
+			break;
+			
+		}
+			
+		this.update(a);
+		
+	}
+	
+	private Collection<Aula> getAulasAlteradas(Collection<Aula> aulas, int licao, boolean licaoPresenca){
+		
+		Aula aulaAtual = new Aula();
+		Aula aulaAlterada = new Aula();
+		
+		if (aulas.size()>0){
+			aulaAtual = aulas.iterator().next();	
+			aulaAlterada = aulaAtual;
+		}
+				
+		switch (licao) {
+		case 1:
+			aulaAlterada.setA1(licaoPresenca);
+			break;
+		case 2:
+			aulaAlterada.setA2(licaoPresenca);
+			break;
+		case 3:
+			aulaAlterada.setA3(licaoPresenca);
+			break;		
+		case 4:
+			aulaAlterada.setA4(licaoPresenca);
+			break;		
+		case 5:
+			aulaAlterada.setA5(licaoPresenca);
+			break;		
+		case 6:
+			aulaAlterada.setA6(licaoPresenca);
+			break;		
+		case 7:
+			aulaAlterada.setA7(licaoPresenca);
+			break;					
+		case 8:
+			aulaAlterada.setA8(licaoPresenca);
+			break;		
+		case 9:
+			aulaAlterada.setA9(licaoPresenca);
+			break;		
+		case 10:
+			aulaAlterada.setA10(licaoPresenca);
+			break;					
+		}
+		
+		aulas.remove(aulaAtual);
+		aulas.add(aulaAlterada);
+		return aulas;
 	}
 
 

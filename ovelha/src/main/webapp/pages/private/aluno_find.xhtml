@@ -9,9 +9,22 @@
 
 	<ui:define name="body">
 	<b:container>
+				                    <script>
+      $(document).ready(function() {
+          $('#checkAll').on('click', function() {
+               //selects all records on the displayed page if pagination is supported.
+               list.selectAllRowsOnPage();
+
+               //or you can select all the rows across all pages.
+               list.selectAllRows();
+          });
+      });
+ </script>
 	
 		<h:form>
-		
+			<h:panelGroup>
+				<b:messages for="todos" id="editCurso"  />
+			</h:panelGroup>
 			<p:toolbar >
 			
 				<p:toolbarGroup id="tool1" align="left"   >
@@ -33,6 +46,56 @@
 						<b:commandButton value="#{messages['botao.dialogo.nao']}"
 							onclick="PF('confirmation').hide();" type="button" />
 					</p:confirmDialog>
+					
+					<p:commandButton title="#{messages['botao.atualizar.curso']}"
+						icon="ui-icon-disk" onclick="PF('editCurso').show();"
+						type="button" immediate="true" ajax="false" />					
+											
+					<p:confirmDialog message="#{messages['label.atualizacao.grupo.msg']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.atualizacao.grupo']}!" severity="alert"
+						widgetVar="editCurso">
+						
+						<h:panelGroup>
+						
+							<b:panelGrid id="fieldsModulo" columns="4" colSpans="4,4,4">
+								<b:label text="Módulo: " />					
+								<p:selectOneMenu id="selectModulo" value="#{alunoFindMB.modulo}">
+									<f:selectItems value="#{alunoFindMB.modulos}" var="m" itemLabel="#{m}" itemValue="#{m}"  />
+								</p:selectOneMenu>																									
+							</b:panelGrid>
+							<br />
+							<h:panelGrid id="fieldsLicao" columns="6" colSpans="4,4,4">
+								<b:label text="Lição: " />					
+								<p:selectOneMenu id="selectLicao" value="#{alunoFindMB.licao}">
+									<f:selectItems value="#{alunoFindMB.licoes}" var="l" itemLabel="#{l}" itemValue="#{l}"  />
+								</p:selectOneMenu>
+							
+								<b:label text="Presença: " />					
+								<p:selectOneMenu id="selectPresenca" value="#{alunoFindMB.licaoPresenca}">
+									<f:selectItem itemLabel="P - Presente" itemValue="1" />
+									<f:selectItem itemLabel="A - Ausente" itemValue="2" />
+								</p:selectOneMenu>																			
+							
+							</h:panelGrid>	
+							<br />
+							<b:panelGrid id="fieldsLicaoAtual" columns="4" colSpans="4,4,4">
+								<b:label text="Lição Atual: " />					
+								<p:selectOneMenu id="selectLicaoAtual" value="#{alunoFindMB.licaoAtual}">
+									<f:selectItems value="#{alunoFindMB.licoes}" var="la" itemLabel="#{la}" itemValue="#{la}"  />
+								</p:selectOneMenu>																									
+							</b:panelGrid>							
+						
+						</h:panelGroup>													
+
+						<b:commandButton value="#{messages['botao.dialogo.sim']}"
+							action="#{alunoFindMB.updateSelection}"
+							actionListener="#{alunoFindMB.clear}" />
+						<b:commandButton value="#{messages['botao.dialogo.nao']}"
+							onclick="PF('editCurso').hide();" type="button" />
+					</p:confirmDialog>						
+						
+					
 				</h:panelGroup>
 					
 									
@@ -44,20 +107,24 @@
 								
 					<h:panelGroup>
 						<p:inputText id="item" value="#{alunoFindMB.filtro.nome}" 
-							title="Nome do aluno(a)" required="true" />
+							title="Nome do aluno(a)" requiredMessage="Favor consultar e selecionar os registros antes de realizar a operação."/>
 						<p:commandButton title="#{messages['botao.pesquisar']}" update="list" 
 							icon="ui-icon-search" process="@all"
 							actionListener="#{alunoFindMB.pesquisarAlunos}" ajax="true"/>
+						
 					</h:panelGroup>
+
 				</p:panelGrid>
 				</p:toolbarGroup>
+				
+				 
 			</p:toolbar>
 
-			<p:dataTable id="list" var="bean" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
+			<p:dataTable id="list" widgetVar="list" var="bean" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
 				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
 				
 				<p:column style="width:1%;" rendered="#{loginMB.ADM}">
-				<f:facet name="header">#</f:facet>
+				<f:facet name="header"><input id="checkAll" type="checkbox" /></f:facet>
 					<h:selectBooleanCheckbox value="#{alunoFindMB.selection[bean.id]}" />
 				</p:column>
 				
@@ -105,6 +172,7 @@
 				</p:column>				
 				
 			</p:dataTable>
+
 		</h:form>
 		</b:container>
 	</ui:define>

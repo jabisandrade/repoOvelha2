@@ -97,5 +97,9 @@
 		<exception-type>javax.servlet.ServletException</exception-type>
 		<location>/pages/public/logout.jsf</location>
 	</error-page>  
+	
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 
 </web-app>

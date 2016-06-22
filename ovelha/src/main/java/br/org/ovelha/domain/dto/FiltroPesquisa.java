@@ -1,5 +1,7 @@
 package br.org.ovelha.domain.dto;
 
+import java.util.Date;
+
 import br.org.ovelha.constant.PESQUISA_TIPO;
 
 public class FiltroPesquisa {
@@ -7,6 +9,7 @@ public class FiltroPesquisa {
 	private String nome;
 	private PESQUISA_TIPO tipo;
 	private String tipoBusca;
+	private Date dataAtualizacao;
 	
 	public PESQUISA_TIPO getTipo() {
 		return tipo;
@@ -26,6 +29,12 @@ public class FiltroPesquisa {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Date getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+	public void setDataAtualizacao(Date dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
 	}
 
 

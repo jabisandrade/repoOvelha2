@@ -4,7 +4,9 @@ public enum PESQUISA_TIPO {
     NOME_ALUNO(1,"Nome do Aluno"), 
     NOME_LIDER_MACRO(2,"Nome do Lider Macro"),
     NOME_LIDER_IMEDIATO(3,"Nomer do Líder Imediato"),   
-    NOME_PROFESSOR(4,"Nome dos Professores"); 
+    NOME_PROFESSOR(4,"Nome dos Professores"),
+	MODULO(5,"Modulo do Curso"),
+	DATA_ATUALIZACAO(6,"Data de Atualizacao"); 
 
     private int valor;
     private String descricao;

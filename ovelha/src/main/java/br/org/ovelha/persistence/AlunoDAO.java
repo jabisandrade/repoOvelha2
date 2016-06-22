@@ -1,7 +1,10 @@
 package br.org.ovelha.persistence;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import br.org.ovelha.constant.PESQUISA_TIPO;
 import br.org.ovelha.domain.Aluno;
 import br.org.ovelha.domain.Usuario;
 import br.org.ovelha.domain.dto.FiltroPesquisa;
+import br.org.ovelha.util.Data;
 
 @PersistenceController
 public class AlunoDAO extends AbstractDAO<Aluno, Long> {
@@ -130,11 +134,24 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_LIDER_IMEDIATO)){
 			jpql.append(" where UPPER(a.nomeLiderImediato) like UPPER(:nome)");
 		}else if(filtro.getTipo().equals(PESQUISA_TIPO.NOME_PROFESSOR)){
-			jpql.append(" where UPPER(a.professores) like UPPER(:nome)");						
+			jpql.append(" where UPPER(a.professores) like UPPER(:nome)");								
+		}else if(filtro.getTipo().equals(PESQUISA_TIPO.MODULO)){
+			jpql.append(" where a.modulo =:modulo");						
+		}else{
+			jpql.append(" where a.dataAtualizacaoRegistro >:data");
 		}
+		
 		jpql.append(" order by a.nome ");
 		
-		parametros.put("nome", "%" + filtro.getNome() + "%");
+		if(filtro.getTipo().equals(PESQUISA_TIPO.MODULO)){
+			int modulo = new Integer(filtro.getNome());
+			parametros.put("modulo", modulo);
+		}else if(filtro.getTipo().equals(PESQUISA_TIPO.DATA_ATUALIZACAO)){
+			parametros.put("data", filtro.getDataAtualizacao());
+		}else{
+			parametros.put("nome", "%" + filtro.getNome() + "%");	
+		}
+		
 
 		return executeQuery(jpql.toString(), parametros);
 	}
@@ -148,6 +165,31 @@ public class AlunoDAO extends AbstractDAO<Aluno, Long> {
 		jpql.append(" order by a.nome ");
 		return executeQuery(jpql.toString(), parametros);
 	}
+
+	public Date obterUltimaDataAtualizacao() {
+		
+		Date data = null;
+
+		StringBuilder jpql = new StringBuilder();
+		jpql.append("select a.dataAtualizacaoRegistro, count(a.dataAtualizacaoRegistro)");
+		jpql.append(" from Aluno a group by a.dataAtualizacaoRegistro");
+		jpql.append(" order by a.dataAtualizacaoRegistro desc");
+		
+		Query q = createQuery(jpql.toString());
+
+		@SuppressWarnings("unchecked")
+		List<Object[]> lista = q.getResultList();
+		for (Object[] c:lista) {
+
+			if (c[0]!=null){
+				data = Data.toDate(c[0].toString()) ;
+				break;
+			}	
+		}		
+		return data;		
+	}
+	
+
 
 
 }
