@@ -35,14 +35,14 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
-
-			<p:dataTable id="list" var="bean" value="#{alunoListMB.resultList}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
-				<f:facet name="header">Lista de Alunos (Total: #{alunoListMB.totalAlunos})</f:facet>
+			
+			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoListMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoListMB.resultList}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
+				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
 				
-				<p:column style="width:1%;" rendered="#{loginMB.ADM}">
+				
+				<p:column style="width:1%;" selectionMode="multiple" rendered="#{loginMB.ADM}">
 				<f:facet name="header">#</f:facet>
-					<h:selectBooleanCheckbox value="#{alunoListMB.selection[bean.id]}" />
-				</p:column>
+				</p:column>			
 				
 				<p:column style="width:8%;" sortBy="#{bean.nome}" rendered="#{loginMB.ADM}">
 					<f:facet name="header">Nome</f:facet>

@@ -1,8 +1,10 @@
 package br.org.ovelha.view;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.NextView;
@@ -23,6 +25,7 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;
 	private int totalAlunos = 0;
+	private List<Aluno> alunosSelecionados = new ArrayList<Aluno>();
 
 	@Inject
 	private AlunoBC bc;
@@ -36,16 +39,16 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	@Transactional
 	public String deleteSelection() {
-		boolean delete;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long id = iter.next();
-			delete = getSelection().get(id);
-
-			if (delete) {
-				bc.delete(id);
-				iter.remove();
-			}
+		boolean delete = false;
+		for (Aluno a: alunosSelecionados){
+			bc.delete(a.getId());
+			delete=true;
 		}
+		
+		if (delete){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Aluno(s) removido(s) da base com sucesso.",""));
+		}		
 		return getPreviousView();
 	}
 	
@@ -59,6 +62,16 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	public void setTotalAlunos(int totalAlunos) {
 		this.totalAlunos = totalAlunos;
+	}
+	
+
+	public List<Aluno> getAlunosSelecionados() {
+		return alunosSelecionados;
+	}
+
+
+	public void setAlunosSelecionados(List<Aluno> alunosSelecionados) {
+		this.alunosSelecionados = alunosSelecionados;
 	}
 	
 	

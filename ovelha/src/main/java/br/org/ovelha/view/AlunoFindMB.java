@@ -100,7 +100,7 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 		
 		if (atualizou){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_INFO,"Alunos removidos da base.",""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Alunos removidos da base com sucesso.",""));
 		}		
 		return getPreviousView();
 	}
@@ -119,7 +119,7 @@ public class AlunoFindMB extends AbstractListPageBean<Aluno, Long> {
 		
 		if (atualizou){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_INFO,"Alunos atualizados recentemente em "+Data.dataHoraExtenso(dataUltimaAtualizacao)+".",""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Aluno(s) atualizado(s) recentemente em "+Data.dataHoraExtenso(dataUltimaAtualizacao)+".",""));
 
 		}
 		return getPreviousView();
