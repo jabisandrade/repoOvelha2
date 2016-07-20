@@ -23,6 +23,7 @@
 						type="button" immediate="true" ajax="false" />
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						style="position:absolute;top: 100px;" 
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert"
 						widgetVar="confirmation">
@@ -36,8 +37,8 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoListMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoListMB.resultList}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
-				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
+			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoListMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoListMB.resultList}" paginator="true" rows="10" rowsPerPageTemplate="10,50,100,500,1000" paginatorPosition="bottom" >
+				<f:facet name="header">Lista de Alunos listados (Total: #{alunoListMB.totalAlunos})</f:facet>
 				
 				
 				<p:column style="width:1%;" selectionMode="multiple" rendered="#{loginMB.ADM}">

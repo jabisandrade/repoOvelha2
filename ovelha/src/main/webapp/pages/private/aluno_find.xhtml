@@ -23,7 +23,8 @@
 						icon="ui-icon-trash" onclick="PF('confirmation').show();"
 						type="button" immediate="true" ajax="false" />
 
-					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" 
+						style="position:absolute;top: 100px;" 
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert"
 						widgetVar="confirmation">
@@ -40,6 +41,7 @@
 						type="button" immediate="true" ajax="false" />					
 											
 					<p:confirmDialog message="#{messages['label.atualizacao.grupo.msg']}"
+						style="position:absolute;top: 100px;" 
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.atualizacao.grupo']}!" severity="alert"
 						widgetVar="editCurso">
@@ -106,7 +108,7 @@
 				 
 			</p:toolbar>
 
-			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoFindMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoFindMB.alunos}" paginator="true" rows="50" rowsPerPageTemplate="50,100,500,1000" paginatorPosition="bottom" >
+			<p:dataTable id="list" widgetVar="list" var="bean"  selection="#{alunoFindMB.alunosSelecionados}" rowKey="#{bean.id}" value="#{alunoFindMB.alunos}" paginator="true" rows="10" rowsPerPageTemplate="10,50,100,500,1000" paginatorPosition="bottom" >
 				<f:facet name="header">Lista de Alunos encontrados na pesquisa (Total: #{alunoFindMB.totalAlunos})</f:facet>
 				
 				
