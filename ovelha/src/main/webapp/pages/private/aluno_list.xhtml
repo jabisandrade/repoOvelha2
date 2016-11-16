@@ -59,11 +59,13 @@
 					<h:outputText value="#{bean.nome}" />
 				</p:column>									
 				
+				<!-- 
 				<p:column style="width:5%;" sortBy="#{bean.modulo}" styleClass="text-center">
 					<f:facet name="header">Módulo/Lição</f:facet>
 					<h:outputText value="#{bean.modulo}" /> /
 					<h:outputText value="#{bean.licao}" />
 				</p:column>
+				 -->
 				
 				<p:column style="width:4%;" sortBy="#{bean.ultimaPresenca}" rendered="#{loginMB.ADM}" styleClass="text-center">
 					<f:facet name="header">Presença</f:facet>
@@ -91,7 +93,12 @@
 				<p:column style="width:7%;" sortBy="#{bean.nomeLiderMacro}" rendered="#{loginMB.ADM}">
 					<f:facet name="header">Lider Macro</f:facet>
 					<h:outputText value="#{bean.nomeLiderMacro}" />
-				</p:column>				
+				</p:column>	
+				
+				<p:column style="width:4%;" sortBy="#{bean.reencontroStr}">
+					<f:facet name="header">Reencontro</f:facet>
+					<h:outputText value="#{bean.reencontroStr}" />
+				</p:column>			
 				
 			</p:dataTable>
 		</h:form>
